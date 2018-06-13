@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // 如果想使用SwipeBack 滑动边缘退出Fragment/Activity功能，请再添加下面的库
+    compile 'me.yokeyword:fragmentation-swipeback:0.7.9'
+    compile 'me.yokeyword:fragmentation:0.10.2'
+    // EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    compile 'com.github.bumptech.glide:glide:3.5.2'
+    compile 'com.meizu.flyme.internet:push-internal:3.6.3@aar'
+    compile 'com.jph.takephoto:takephoto_library:4.0.3'
+    compile 'com.lqr.adapter:library:1.0.2'
+    compile 'com.lqr.recyclerview:library:1.0.2'
+    compile 'com.lqr.imagepicker:library:1.0.0'
+    compile 'com.lqr.ninegridimageview:library:1.0.0'
+    compile 'com.lqr.optionitemview:library:1.0.7'
+    /*compile 'com.lqr.emoji:library:1.0.2'*/
+    compile 'com.lqr.audio:library:1.0.0'
+    compile 'com.lqr.imagepicker:library:1.0.0'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.7@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
+    compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7'
+    compile 'com.zhy:autolayout:1.4.5'
+
+    compile project(path: ':ui')
+}

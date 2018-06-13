@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.lqr.audio:library-1.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/3a15229cc0ac5871a5a0be3a8867f343/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/3a15229cc0ac5871a5a0be3a8867f343/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lqr.audio/library/1.0.0/2750973e598c7c18b503596c50ae104e1778a17c/library-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
