@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.liaoliao">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <meta-data
+        android:name="com.tencent.rdm.uuid"
+        android:value="@string/tencent_key" />
+
+    <application
+        android:name=".chat.application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/liaoliao"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="design_width"
+            android:value="720">
+        </meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1280">
+        </meta-data>
+        <activity android:name="com.liaoliao.chat.timchat.ui.SplashActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoDisplay"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:launchMode="singleTask"
+            >
+
+        </activity>
+        <activity android:name="com.liaoliao.chat.activity.MainActivity"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:launchMode="singleTask"
+                  android:theme="@style/AppTheme"
+            />
+        <activity android:name=".chat.timchat.ui.ChatActivity" />
+        <activity android:name=".chat.timchat.ui.AboutActivity" />
+        <activity android:name=".chat.timchat.ui.AddFriendActivity" />
+        <activity android:name=".chat.timchat.ui.ApplyGroupActivity" />
+        <activity android:name=".chat.timchat.ui.BlackListActivity" />
+        <activity android:name=".chat.timchat.ui.ChooseFriendActivity" />
+        <activity android:name=".chat.timchat.ui.CreateGroupActivity" />
+        <activity android:name=".chat.timchat.ui.EditActivity" />
+        <activity android:name=".chat.timchat.ui.FriendshipHandleActivity" />
+        <activity android:name=".chat.timchat.ui.FriendshipManageMessageActivity" />
+        <activity android:name=".chat.timchat.ui.GroupListActivity" />
+        <activity android:name=".chat.timchat.ui.GroupManageMessageActivity" />
+        <activity android:name=".chat.timchat.ui.GroupMemberActivity" />
+        <activity android:name=".chat.timchat.ui.GroupMemberProfileActivity" />
+        <activity android:name=".chat.timchat.ui.GroupProfileActivity" />
+        <activity android:name=".chat.timchat.ui.ImagePreviewActivity" />
+        <activity android:name=".chat.timchat.ui.ImageViewActivity" />
+        <activity android:name=".chat.timchat.ui.ManageFriendGroupActivity" />
+        <activity android:name=".chat.timchat.ui.MessageNotifySettingActivity" />
+        <activity android:name=".chat.timchat.ui.ProfileActivity" />
+        <activity android:name=".chat.timchat.ui.SearchFriendActivity" />
+        <activity android:name=".chat.timchat.ui.SearchGroupActivity" />
+        <activity android:name=".chat.timchat.ui.TCVideoPreviewActivity" />
+        <activity android:name=".chat.timchat.ui.TCVideoRecordActivity" />
+        <activity android:name=".chat.timchat.ui.VideoActivity" />
+        <activity android:name=".chat.timchat.ui.NewChatActivity" />
+        <activity android:name=".chat.activity.login.LoginActivity"
+                  android:theme="@style/Theme.NoDisplay"
+                  android:screenOrientation="portrait"
+           >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 【必须】消息收发service -->
+        <service
+            android:name="com.tencent.qalsdk.service.QalService"
+            android:exported="true"
+            android:process=":QALSERVICE" >
+        </service>
+        <service
+            android:name="com.tencent.qalsdk.service.QalAssistService"
+            android:exported="false"
+            android:process=":QALSERVICE" >
+        </service>
+
+        <!-- 【必须】 离线消息广播接收器 -->
+        <receiver
+            android:name="com.tencent.qalsdk.QALBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.tencent.qalsdk.broadcast.qal" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.tencent.qalsdk.core.NetConnInfoCenter" android:process=":QALSERVICE">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+
+            <!-- ImSDK 3.0.2 后添加 -->
+            <intent-filter>
+                <action android:name="com.tencent.qalsdk.service.TASK_REMOVED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
