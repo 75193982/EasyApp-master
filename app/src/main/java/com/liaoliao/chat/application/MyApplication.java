@@ -11,6 +11,7 @@ import com.liaoliao.R;
 import com.liaoliao.chat.timchat.utils.Foreground;
 import com.lqr.emoji.IImageLoader;
 import com.lqr.emoji.LQREmotionKit;
+import com.mob.MobSDK;
 import com.tencent.imsdk.TIMGroupReceiveMessageOpt;
 import com.tencent.imsdk.TIMManager;
 import com.tencent.imsdk.TIMOfflinePushListener;
@@ -52,6 +53,7 @@ public class MyApplication extends Application {
                 Glide.with(context).load(path).centerCrop().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
             }
         });
+        MobSDK.init(this);
     }
 
     public static Context getContext() {
