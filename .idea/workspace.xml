@@ -10,31 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b708365c-81ad-435c-a1dc-34b77ea64b5d" name="Default" comment="1">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/android-profile/profile-2018-06-15-07-27-23-107.rawproto" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/android-profile/profile-2018-06-15-07-28-04-835.rawproto" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/HwPush_SDK_V2705.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/MiPush_SDK_Client_3_0_3.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/bugly_2.4.0_imsdk_release.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/cos-sdk-android.1.4.3.6.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/imsdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/imsdk_group_ext.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/imsdk_msg_ext.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/imsdk_sns_ext.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/imsdk_ugc_ext.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/libammsdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/mobilepb.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/okhttp-3.2.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/okio-1.6.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/open_sdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/qalsdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/soload.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/tls_sdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/txrtmpsdk.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/libs/wup-1.0.0-SNAPSHOT.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/android-profile/profile-2018-06-15-07-27-23-107.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/android-profile/profile-2018-06-15-07-28-04-835.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="b708365c-81ad-435c-a1dc-34b77ea64b5d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -6069,7 +6045,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529019988162" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529020010434" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -6117,7 +6093,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529019988163" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529020010434" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -6300,7 +6276,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529019988163" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529020010435" />
       </method>
     </configuration>
     <list size="1">
@@ -6360,7 +6336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529019515951</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1">
+      <created>1529020003052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1529020003052</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -6374,6 +6357,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -6391,7 +6375,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Android WiFi ADB" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
