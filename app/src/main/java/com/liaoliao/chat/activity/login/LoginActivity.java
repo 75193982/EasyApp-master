@@ -17,9 +17,11 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -33,6 +35,11 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     CustomVideoView videoview;
     @BindView(R.id.image_view)
     ImageView imageView;
+    @BindView(R.id.iv_wechat)
+    ImageView ivWechat;
+    @BindView(R.id.iv_qq)
+    ImageView ivQq;
+    private Platform qq;
 
     @Override
     protected int provideContentViewId() {
@@ -47,12 +54,12 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     public void initView() {
         MediaMetadataRetriever media = new MediaMetadataRetriever();
-        media.setDataSource(this, Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sport));
+        media.setDataSource(this, Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sport));
         //获取第一帧
-        Bitmap bitmap  = media.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST_SYNC );
+        Bitmap bitmap = media.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
         imageView.setImageBitmap(bitmap);
         videoview = (CustomVideoView) findViewById(R.id.videoview);
-        videoview.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sport));
+        videoview.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sport));
         //播放
         videoview.start();
 
@@ -60,10 +67,12 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
 
 
     //第三方授权登录
-     private void authorize(Platform plat) {
-        if (plat == null) { return; }
+    private void authorize(Platform plat) {
+        if (plat == null) {
+            return;
+        }
         //判断指定平台是否已经完成授权
-          if(plat.isAuthValid()) {
+       if (plat.isAuthValid()) {
             String token = plat.getDb().getToken();
             String userId = plat.getDb().getUserId();
             String name = plat.getDb().getUserName();
@@ -72,22 +81,23 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             String platformNname = plat.getDb().getPlatformNname();
             if (userId != null) {
                 //已经授权过，直接下一步操作
-                if(platformNname.equals(SinaWeibo.NAME)) {
+                if (platformNname.equals(SinaWeibo.NAME)) {
                     //微博授权
-                    } else if(platformNname.equals(QQ.NAME)) {
+                } else if (platformNname.equals(QQ.NAME)) {
                     //qq授权
-                     } else if(platformNname.equals(Wechat.NAME)) {
+                } else if (platformNname.equals(Wechat.NAME)) {
                     //微信授权
-                    } return; } }
-                    // true不使用SSO授权，false使用SSO授权
-          plat.SSOSetting(false);
+                }
+                return;
+            }
+        }
+        // true不使用SSO授权，false使用SSO授权
+        plat.SSOSetting(false);
         plat.setPlatformActionListener(this);
         plat.authorize();
         //获取用户资料
-          plat.showUser(null);
+        plat.showUser(null);
     }
-
-
 
 
     @Override
@@ -130,7 +140,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     protected void onRestart() {
         super.onRestart();
-       initView();
+        initView();
 
     }
 
@@ -140,7 +150,9 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         super.onStop();
         videoview.stopPlayback();
     }
+
     private PlatformDb platDB; //平台授权数据DB
+
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
         String headImageUrl = null;//头像
@@ -153,46 +165,46 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             // 获取平台数据DB
             if (platform.getName().equals(Wechat.NAME)) {
                 //微信登录 // 通过DB获取各种数据
-                 token = platDB.getToken();
-                 userId = platDB.getUserId();
-                 name = platDB.getUserName();
-                 gender = platDB.getUserGender();
-                 headImageUrl = platDB.getUserIcon();
-                 if ("m".equals(gender)) {
-                     gender = "1";
+                token = platDB.getToken();
+                userId = platDB.getUserId();
+                name = platDB.getUserName();
+                gender = platDB.getUserGender();
+                headImageUrl = platDB.getUserIcon();
+                if ("m".equals(gender)) {
+                    gender = "1";
 
-            } else {
-                gender = "2";
-                 }
+                } else {
+                    gender = "2";
+                }
 
 
             } else if (platform.getName().equals(SinaWeibo.NAME)) {
 
                 // 微博登录
-               token = platDB.getToken();
-               userId = platDB.getUserId();
-               name = hashMap.get("nickname").toString();
-               // 名字
+                token = platDB.getToken();
+                userId = platDB.getUserId();
+                name = hashMap.get("nickname").toString();
+                // 名字
                 gender = hashMap.get("gender").toString();
                 // 年龄
                 headImageUrl = hashMap.get("figureurl_qq_2").toString();
                 // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
             } else if (platform.getName().equals(QQ.NAME)) {
                 // QQ登录
-                 token = platDB.getToken();
-                 userId = platDB.getUserId();
-                 name = hashMap.get("nickname").toString();
-                 // 名字
-               gender = hashMap.get("gender").toString();
-               // 年龄
+                token = platDB.getToken();
+                userId = platDB.getUserId();
+                name = hashMap.get("nickname").toString();
+                // 名字
+                gender = hashMap.get("gender").toString();
+                // 年龄
                 headImageUrl = hashMap.get("figureurl_qq_2").toString();
                 // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
-                 }
+                qq.removeAccount(true);
+            }
         }
 
 
-
-            }
+    }
 
 
     @Override
@@ -203,5 +215,32 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     public void onCancel(Platform platform, int i) {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.iv_wechat, R.id.iv_qq})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_wechat:
+                // 微信登录
+                Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
+                authorize(wechat);
+
+               /* Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
+                authorize(weibo);*/
+                break;
+            case R.id.iv_qq:
+                // qq登录
+                qq = ShareSDK.getPlatform(QQ.NAME);
+                qq.removeAccount(true);
+                authorize(qq);
+                break;
+        }
     }
 }
