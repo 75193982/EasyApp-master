@@ -217,12 +217,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick({R.id.iv_wechat, R.id.iv_qq})
     public void onClick(View view) {
