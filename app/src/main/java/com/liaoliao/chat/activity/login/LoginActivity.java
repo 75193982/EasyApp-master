@@ -13,14 +13,22 @@ import com.liaoliao.R;
 import com.liaoliao.chat.base.BaseActivity;
 import com.liaoliao.chat.view.CustomVideoView;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  * Created by lv on 2018/6/13 for EasyApp-master
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements PlatformActionListener {
     @BindView(R.id.videoview)
     CustomVideoView videoview;
     @BindView(R.id.image_view)
@@ -50,6 +58,34 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+
+    //第三方授权登录
+     private void authorize(Platform plat) {
+        if (plat == null) { return; }
+        //判断指定平台是否已经完成授权
+          if(plat.isAuthValid()) {
+            String token = plat.getDb().getToken();
+            String userId = plat.getDb().getUserId();
+            String name = plat.getDb().getUserName();
+            String gender = plat.getDb().getUserGender();
+            String headImageUrl = plat.getDb().getUserIcon();
+            String platformNname = plat.getDb().getPlatformNname();
+            if (userId != null) {
+                //已经授权过，直接下一步操作
+                if(platformNname.equals(SinaWeibo.NAME)) {
+                    //微博授权
+                    } else if(platformNname.equals(QQ.NAME)) {
+                    //qq授权
+                     } else if(platformNname.equals(Wechat.NAME)) {
+                    //微信授权
+                    } return; } }
+                    // true不使用SSO授权，false使用SSO授权
+          plat.SSOSetting(false);
+        plat.setPlatformActionListener(this);
+        plat.authorize();
+        //获取用户资料
+          plat.showUser(null);
+    }
 
 
 
@@ -103,5 +139,69 @@ public class LoginActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         videoview.stopPlayback();
+    }
+    private PlatformDb platDB; //平台授权数据DB
+    @Override
+    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+        String headImageUrl = null;//头像
+        String userId;//userId
+        String token;//token
+        String gender;//性别
+        String name = null;//用户名
+        if (i == Platform.ACTION_USER_INFOR) {
+            platDB = platform.getDb();
+            // 获取平台数据DB
+            if (platform.getName().equals(Wechat.NAME)) {
+                //微信登录 // 通过DB获取各种数据
+                 token = platDB.getToken();
+                 userId = platDB.getUserId();
+                 name = platDB.getUserName();
+                 gender = platDB.getUserGender();
+                 headImageUrl = platDB.getUserIcon();
+                 if ("m".equals(gender)) {
+                     gender = "1";
+
+            } else {
+                gender = "2";
+                 }
+
+
+            } else if (platform.getName().equals(SinaWeibo.NAME)) {
+
+                // 微博登录
+               token = platDB.getToken();
+               userId = platDB.getUserId();
+               name = hashMap.get("nickname").toString();
+               // 名字
+                gender = hashMap.get("gender").toString();
+                // 年龄
+                headImageUrl = hashMap.get("figureurl_qq_2").toString();
+                // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
+            } else if (platform.getName().equals(QQ.NAME)) {
+                // QQ登录
+                 token = platDB.getToken();
+                 userId = platDB.getUserId();
+                 name = hashMap.get("nickname").toString();
+                 // 名字
+               gender = hashMap.get("gender").toString();
+               // 年龄
+                headImageUrl = hashMap.get("figureurl_qq_2").toString();
+                // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
+                 }
+        }
+
+
+
+            }
+
+
+    @Override
+    public void onError(Platform platform, int i, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(Platform platform, int i) {
+
     }
 }

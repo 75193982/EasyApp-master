@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 25
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -20,11 +20,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile files('libs/imsdk_group_ext.jar')
-    compile files('libs/imsdk_msg_ext.jar')
-    compile files('libs/imsdk_sns_ext.jar')
-    compile files('libs/txrtmpsdk.jar')
-    compile files('libs/imsdk_ugc_ext.jar')
+
 
 }
