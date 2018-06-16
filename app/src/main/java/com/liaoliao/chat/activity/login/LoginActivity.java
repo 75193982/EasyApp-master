@@ -73,7 +73,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         }
         //判断指定平台是否已经完成授权
        if (plat.isAuthValid()) {
-            String token = plat.getDb().getToken();
+         //  qq.removeAccount(true);
+           /* String token = plat.getDb().getToken();
             String userId = plat.getDb().getUserId();
             String name = plat.getDb().getUserName();
             String gender = plat.getDb().getUserGender();
@@ -89,12 +90,12 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                     //微信授权
                 }
                 return;
-            }
+            }*/
         }
         // true不使用SSO授权，false使用SSO授权
         plat.SSOSetting(false);
         plat.setPlatformActionListener(this);
-        plat.authorize();
+       // plat.authorize();
         //获取用户资料
         plat.showUser(null);
     }
@@ -232,8 +233,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 break;
             case R.id.iv_qq:
                 // qq登录
-                qq = ShareSDK.getPlatform(QQ.NAME);
-                qq.removeAccount(true);
+                 qq = ShareSDK.getPlatform(QQ.NAME);
                 authorize(qq);
                 break;
         }
