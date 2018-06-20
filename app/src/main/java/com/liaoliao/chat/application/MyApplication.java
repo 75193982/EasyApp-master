@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.Utils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.liaoliao.R;
@@ -71,7 +72,7 @@ public class MyApplication extends Application {
         });
         MobSDK.init(this);
         initOKGO();
-
+        Utils.init(this);
     }
 
     private void initOKGO() {

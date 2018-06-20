@@ -18,9 +18,13 @@ import android.widget.Toast;
 import com.huawei.android.pushagent.PushManager;
 import com.liaoliao.R;
 import com.liaoliao.chat.activity.MainActivity;
+import com.liaoliao.chat.application.MyApplication;
+import com.liaoliao.chat.model.UserAuth;
 import com.liaoliao.chat.timchat.model.UserInfo;
 import com.liaoliao.chat.timchat.ui.customview.DialogActivity;
 import com.liaoliao.chat.timchat.utils.PushUtil;
+import com.liaoliao.chat.utils.LoginInformation;
+import com.liaoliao.chat.utils.Setting;
 import com.meizu.cloud.pushsdk.util.MzSystemUtils;
 import com.tencent.imsdk.TIMCallBack;
 import com.tencent.imsdk.TIMConnListener;
@@ -51,13 +55,17 @@ public class SplashActivity extends FragmentActivity implements SplashView,TIMCa
     private int GOOGLE_PLAY_RESULT_CODE = 200;
     private final int REQUEST_PHONE_PERMISSIONS = 0;
     private static final String TAG = SplashActivity.class.getSimpleName();
+    private UserAuth user;
+    private String sign;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        user = LoginInformation.getInstance().getUser();
 
+        sign = new Setting(MyApplication.getContext()).loadString("sign");
         clearNotification();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -132,7 +140,8 @@ public class SplashActivity extends FragmentActivity implements SplashView,TIMCa
         userConfig = GroupEvent.getInstance().init(userConfig);
         userConfig = MessageEvent.getInstance().init(userConfig);
         TIMManager.getInstance().setUserConfig(userConfig);
-        LoginBusiness.loginIm("huihui", "eJxFkF1PgzAUhv8LtxpTisXi3QIjMiGEbE7pTcNGxw5qV0vZR4z-3dqwmJyr58nJed-z7a3y5V2jFLS8MTzQrffoIe-WYXFWoAVvdkZoi31CCEboao9CD3CQVmDkEx8HCP1LaIU0sAO3uB-BzmQG6Cwq5nWcVUnCVmnKuqVhuI5uRqmO*Jwk-cWEs*KZ9ujV5PA0j0n9dsr2szLIo7qo2McQVJVfnErZLRiE*iUvFrrssk3abcS6-Ip7dT3WvnNX7i-*vY0XRSGmkzTwKVwtTElAKX6YeLPdHkZpuLko4b7x8wseQVhi", this);
+
+        LoginBusiness.loginIm(user.getUserId(), sign, this);
     }
 
     /**
@@ -142,9 +151,8 @@ public class SplashActivity extends FragmentActivity implements SplashView,TIMCa
     public void navToLogin() {
        // Intent intent = new Intent(getApplicationContext(), HostLoginActivity.class);
        // startActivityForResult(intent, LOGIN_RESULT_CODE);
-        UserInfo.getInstance().setUserSig("eJxFkF1PgzAUhv8LtxpTisXi3QIjMiGEbE7pTcNGxw5qV0vZR4z-3dqwmJyr58nJed-z7a3y5V2jFLS8MTzQrffoIe-WYXFWoAVvdkZoi31CCEboao9CD3CQVmDkEx8HCP1LaIU0sAO3uB-BzmQG6Cwq5nWcVUnCVmnKuqVhuI5uRqmO*Jwk-cWEs*KZ9ujV5PA0j0n9dsr2szLIo7qo2McQVJVfnErZLRiE*iUvFrrssk3abcS6-Ip7dT3WvnNX7i-*vY0XRSGmkzTwKVwtTElAKX6YeLPdHkZpuLko4b7x8wseQVhi");
-        UserInfo.getInstance().setId("huihui");
-        LoginBusiness.loginIm(UserInfo.getInstance().getId(), UserInfo.getInstance().getUserSig(), this);
+
+        LoginBusiness.loginIm(user.getUserId(), sign, this);
     }
 
     /**
@@ -258,9 +266,8 @@ public class SplashActivity extends FragmentActivity implements SplashView,TIMCa
         InitBusiness.start(getApplicationContext(),loglvl);
         //初始化TLS
        // TlsBusiness.init(getApplicationContext());
-        String id =  "huihui";
-        UserInfo.getInstance().setId(id);
-        UserInfo.getInstance().setUserSig("eJxFkF1PgzAUhv8LtxpTisXi3QIjMiGEbE7pTcNGxw5qV0vZR4z-3dqwmJyr58nJed-z7a3y5V2jFLS8MTzQrffoIe-WYXFWoAVvdkZoi31CCEboao9CD3CQVmDkEx8HCP1LaIU0sAO3uB-BzmQG6Cwq5nWcVUnCVmnKuqVhuI5uRqmO*Jwk-cWEs*KZ9ujV5PA0j0n9dsr2szLIo7qo2McQVJVfnErZLRiE*iUvFrrssk3abcS6-Ip7dT3WvnNX7i-*vY0XRSGmkzTwKVwtTElAKX6YeLPdHkZpuLko4b7x8wseQVhi");
+        UserInfo.getInstance().setId(user.getUserId());
+        UserInfo.getInstance().setUserSig(sign);
         presenter = new SplashPresenter(this);
         presenter.start();
     }

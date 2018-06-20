@@ -1,5 +1,6 @@
 package com.liaoliao.chat.activity.login;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
@@ -9,9 +10,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
 import com.liaoliao.R;
+import com.liaoliao.chat.activity.MainActivity;
+import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.base.BaseActivity;
+
+import com.liaoliao.chat.model.MUsers;
+import com.liaoliao.chat.model.UserAuth;
+import com.liaoliao.chat.net.JsonCallback;
+import com.liaoliao.chat.net.LzyResponse;
+import com.liaoliao.chat.net.URL;
+import com.liaoliao.chat.timchat.ui.SplashActivity;
+import com.liaoliao.chat.utils.LoginInformation;
+import com.liaoliao.chat.utils.Setting;
 import com.liaoliao.chat.view.CustomVideoView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.Response;
+import com.tencent.qalsdk.util.BaseApplication;
 
 import java.util.HashMap;
 
@@ -157,9 +175,9 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
         String headImageUrl = null;//头像
-        String userId;//userId
-        String token;//token
-        String gender;//性别
+        String userId="";//userId
+        String token="";//token
+        String gender="";//性别
         String name = null;//用户名
         if (i == Platform.ACTION_USER_INFOR) {
             platDB = platform.getDb();
@@ -201,8 +219,52 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 headImageUrl = hashMap.get("figureurl_qq_2").toString();
                 // 头像figureurl_qq_2 中等图，figureurl_qq_1缩略图
                 qq.removeAccount(true);
+                onLogin(headImageUrl,userId,token,gender,name,QQ.NAME);
             }
         }
+
+
+    }
+
+    private void onLogin(final String headImageUrl, final String userId, String token, final String gender, final String name, final String type) {
+        OkGo.<LzyResponse<MUsers>>post(URL.getUrl(URL.USER_SIGNIN)) .tag(this).params("headImageUrl", headImageUrl)
+                .params("token", token).params("userId", userId)
+                .params("gender", gender).params("name", name).params("type", type)
+                .execute(new JsonCallback<LzyResponse<MUsers>>() {
+            @Override
+            public void onSuccess(Response<LzyResponse<MUsers>> response) {
+                String token = response.body().token;
+                String randomKey = response.body().randomKey;
+                String sign = response.body().sign;
+                new Setting(LoginActivity.this).saveString("token", token);
+                new Setting(LoginActivity.this).saveString("randomKey", randomKey);
+                new Setting(LoginActivity.this).saveString("sign", sign);
+                Setting setting = new Setting(getApplicationContext());
+                UserAuth userAuth = new UserAuth();
+                userAuth.setGender(gender);
+                userAuth.setHeadImageUrl(headImageUrl);
+                userAuth.setName(name);
+                userAuth.setToken(token);
+                userAuth.setType(type);
+                userAuth.setUserId(userId);
+                setting.saveString("user", new Gson().toJson(userAuth));
+                LoginInformation.getInstance().setUser(userAuth);
+                HttpHeaders headerstemp = new HttpHeaders();
+                headerstemp.put(MyApplication.token, "Bearer " + token);
+                OkGo.getInstance().addCommonHeaders(headerstemp);
+                Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+
+            @Override
+            public void onError(Response<LzyResponse<MUsers>> response) {
+                super.onError(response);
+                ToastUtils.showShort(response.getException().getMessage());
+            }
+        });
+
 
 
     }
@@ -234,6 +296,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             case R.id.iv_qq:
                 // qq登录
                  qq = ShareSDK.getPlatform(QQ.NAME);
+                qq.removeAccount(true);
                 authorize(qq);
                 break;
         }
