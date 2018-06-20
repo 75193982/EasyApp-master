@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.lqr.imagepicker:library-1.0.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/a54ab8622b973dcae96786a4027411af/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/a54ab8622b973dcae96786a4027411af/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/0994a17db733f3867c3a60bb2698b0f4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.0.aar/0994a17db733f3867c3a60bb2698b0f4/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.lqr.adapter:library-1.0.2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.2.aar/263b69ec29274710cc15b5d66513b52d/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.2.aar/263b69ec29274710cc15b5d66513b52d/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.2.aar/5cfc4488e2b83d873f9cef7fe21d880f/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.2.aar/5cfc4488e2b83d873f9cef7fe21d880f/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
