@@ -49,4 +49,9 @@ dependencies {
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7'
     compile 'com.zhy:autolayout:1.4.5'
     compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.alibaba:fastjson:1.2.47'
+    //必须使用
+    compile 'com.lzy.net:okgo:3.0.2'
+    compile 'com.lzy.net:okserver:2.0.2'
+    compile 'com.blankj:utilcode:1.10.0'
 }
