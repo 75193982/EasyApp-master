@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lqr.optionitemview:library-1.0.7">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/3dcd694cda8937e2c481b7521ed340da/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/3dcd694cda8937e2c481b7521ed340da/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lqr.optionitemview/library/1.0.7/3d5dbcdbe65ccd424e8fb8444fea38976f2895eb/library-1.0.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
