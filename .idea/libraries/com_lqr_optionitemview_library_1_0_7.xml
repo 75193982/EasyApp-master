@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.lqr.optionitemview:library-1.0.7">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/4323d161525db92f8d908e19617879f0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/4323d161525db92f8d908e19617879f0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/47cc5a0185c071bbd3d5a2936e3f31a6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.0.7.aar/47cc5a0185c071bbd3d5a2936e3f31a6/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
