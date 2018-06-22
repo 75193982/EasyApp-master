@@ -156,9 +156,9 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
         String headImageUrl = null;//头像
-        String userId;//userId
-        String token;//token
-        String gender;//性别
+        String userId="";//userId
+        String token="";//token
+        String gender="";//性别
         String name = null;//用户名
         if (i == Platform.ACTION_USER_INFOR) {
             platDB = platform.getDb();
@@ -202,6 +202,13 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 qq.removeAccount(true);
             }
         }
+
+            onLogin(token,name,gender,headImageUrl,userId,platform.getName());
+    }
+
+    private void onLogin(String token, String name, String gender, String headImageUrl, String userId, String name1) {
+
+
 
 
     }
