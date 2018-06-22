@@ -226,12 +226,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             onLogin(token,name,gender,headImageUrl,userId,platform.getName());
     }
 
-    private void onLogin(String token, String name, String gender, String headImageUrl, String userId, String name1) {
 
-
-
-
-    }
 
     private void onLogin(final String headImageUrl, final String userId, String token, final String gender, final String name, final String type) {
         OkGo.<LzyResponse<MUsers>>post(URL.getUrl(URL.USER_SIGNIN)) .tag(this).params("headImageUrl", headImageUrl)
