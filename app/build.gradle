@@ -19,8 +19,8 @@ MobSDK {
                 bypassApproval false
             }
             Wechat {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                appId "wx563ecaac17ed5c4a"
+                appSecret "b7c7f9831d7c913cb7b42cd1e5e18e25"
                 userName "gh_afb25ac019c9"
                 path "pages/index/index.html?id=1"
                 withShareTicket  true
@@ -28,8 +28,8 @@ MobSDK {
                 bypassApproval false
             }
             WechatMoments {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                appId "wx563ecaac17ed5c4a"
+                appSecret "b7c7f9831d7c913cb7b42cd1e5e18e25"
                 bypassApproval false
             }
             QQ {

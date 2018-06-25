@@ -111,7 +111,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             }*/
         }
         // true不使用SSO授权，false使用SSO授权
-        plat.SSOSetting(false);
+        plat.SSOSetting(true);
         plat.setPlatformActionListener(this);
        // plat.authorize();
         //获取用户资料
@@ -290,6 +290,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
             case R.id.iv_wechat:
                 // 微信登录
                 Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
+                wechat.removeAccount(true);
                 authorize(wechat);
 
                /* Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
