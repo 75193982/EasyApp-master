@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="E:\EasyApp-master\recognizer\libs"><file name="armeabi-v7a/libmsc.so" path="E:\EasyApp-master\recognizer\libs\armeabi-v7a\libmsc.so"/><file name="Msc_1.1127.jar" path="E:\EasyApp-master\recognizer\libs\Msc_1.1127.jar"/><file name="x86/libmsc.so" path="E:\EasyApp-master\recognizer\libs\x86\libmsc.so"/></source></dataSet><dataSet config="debug"><source path="E:\EasyApp-master\recognizer\src\debug\jniLibs"/></dataSet></merger>
