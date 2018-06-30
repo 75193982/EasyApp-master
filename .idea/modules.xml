@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CallKit/CallKit.iml" filepath="$PROJECT_DIR$/CallKit/CallKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CallLib/CallLib.iml" filepath="$PROJECT_DIR$/CallLib/CallLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/EasyApp-master.iml" filepath="$PROJECT_DIR$/EasyApp-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMKit/IMKit.iml" filepath="$PROJECT_DIR$/IMKit/IMKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMLib/IMLib.iml" filepath="$PROJECT_DIR$/IMLib/IMLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/LQREmojiLibrary/LQREmojiLibrary.iml" filepath="$PROJECT_DIR$/LQREmojiLibrary/LQREmojiLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RedPacket/RedPacket.iml" filepath="$PROJECT_DIR$/RedPacket/RedPacket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contactcard/contactcard.iml" filepath="$PROJECT_DIR$/contactcard/contactcard.iml" />
       <module fileurl="file://$PROJECT_DIR$/liaoliaolibrary/liaoliaolibrary.iml" filepath="$PROJECT_DIR$/liaoliaolibrary/liaoliaolibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/presentation/presentation.iml" filepath="$PROJECT_DIR$/presentation/presentation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sdk/sdk.iml" filepath="$PROJECT_DIR$/sdk/sdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ui/ui.iml" filepath="$PROJECT_DIR$/ui/ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recognizer/recognizer.iml" filepath="$PROJECT_DIR$/recognizer/recognizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sticker/sticker.iml" filepath="$PROJECT_DIR$/sticker/sticker.iml" />
     </modules>
   </component>
 </project>

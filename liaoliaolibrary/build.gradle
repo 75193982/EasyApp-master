@@ -2,12 +2,13 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
+    buildToolsVersion '27.0.3'
 
 
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -31,20 +32,9 @@ dependencies {
     // EventBus
     api 'org.greenrobot:eventbus:3.0.0'
 
-    api 'com.github.bumptech.glide:glide:3.5.2'
+
     api 'com.meizu.flyme.internet:push-internal:3.6.3@aar'
-    api 'com.jph.takephoto:takephoto_library:4.0.3'
-    api 'com.lqr.adapter:library:1.0.2'
-    api 'com.lqr.recyclerview:library:1.0.2'
-    api 'com.lqr.imagepicker:library:1.0.0'
-    api 'com.lqr.ninegridimageview:library:1.0.0'
-    api 'com.lqr.optionitemview:library:1.0.7'
-    /*compile 'com.lqr.emoji:library:1.0.2'*/
-    api 'com.lqr.audio:library:1.0.0'
-    api 'com.lqr.imagepicker:library:1.0.0'
-    api 'cn.bingoogolapple:bga-qrcodecore:1.1.7@aar'
-    api 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
-    api 'cn.bingoogolapple:bga-refreshlayout:1.1.7'
+
     api 'com.zhy:autolayout:1.4.5'
     api 'org.jetbrains:annotations-java5:15.0'
     api 'com.alibaba:fastjson:1.2.47'
@@ -52,4 +42,5 @@ dependencies {
     api 'com.lzy.net:okgo:3.0.2'
     api 'com.lzy.net:okserver:2.0.2'
     api 'com.blankj:utilcode:1.10.0'
+    api 'com.google.code.gson:gson:2.8.5'
 }

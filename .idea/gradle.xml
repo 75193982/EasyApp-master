@@ -8,12 +8,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CallKit" />
+            <option value="$PROJECT_DIR$/CallLib" />
+            <option value="$PROJECT_DIR$/IMKit" />
+            <option value="$PROJECT_DIR$/IMLib" />
             <option value="$PROJECT_DIR$/LQREmojiLibrary" />
+            <option value="$PROJECT_DIR$/RedPacket" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/contactcard" />
             <option value="$PROJECT_DIR$/liaoliaolibrary" />
-            <option value="$PROJECT_DIR$/presentation" />
-            <option value="$PROJECT_DIR$/sdk" />
-            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/recognizer" />
+            <option value="$PROJECT_DIR$/sticker" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

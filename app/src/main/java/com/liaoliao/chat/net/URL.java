@@ -7,7 +7,7 @@ import com.liaoliao.chat.utils.Base64Security;
 import com.liaoliao.chat.utils.BaseTransferEntity;
 import com.liaoliao.chat.utils.MD5Util;
 import com.liaoliao.chat.utils.Setting;
-import com.tencent.qalsdk.util.BaseApplication;
+
 
 /**
  * URL路径处理类

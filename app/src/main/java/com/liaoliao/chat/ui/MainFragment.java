@@ -12,13 +12,11 @@ import android.widget.ImageView;
 
 import com.liaoliao.R;
 import com.liaoliao.chat.base.BaseFragment;
-import com.liaoliao.chat.timchat.ui.ChatActivity;
-import com.liaoliao.chat.timchat.ui.ConversationFragment;
-import com.liaoliao.chat.timchat.ui.NewChatActivity;
+
 import com.liaoliao.chat.ui.view.BottomBar;
 import com.liaoliao.chat.ui.view.PopupMenuUtil;
 import com.liaoliao.chat.utils.StartBrotherEvent;
-import com.tencent.imsdk.TIMConversationType;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,7 +56,7 @@ public class MainFragment extends BaseFragment {
         if (savedInstanceState == null) {
             mFragments[FIRST] = FirstFragment.newInstance();
             mFragments[SECOND] = SecondFragment.newInstance();
-            mFragments[THIRD] = ConversationFragment.newInstance();
+            mFragments[THIRD] = SecondFragment.newInstance();
             mFragments[FOURTH] = FouthFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_tab_container, FIRST,
                     mFragments[FIRST],
@@ -69,7 +67,7 @@ public class MainFragment extends BaseFragment {
             // 这里我们需要拿到mFragments的引用,也可以通过getChildFragmentManager.getFragments()自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findChildFragment(FirstFragment.class);
             mFragments[SECOND] = findChildFragment(SecondFragment.class);
-            mFragments[THIRD] = findChildFragment(ConversationFragment.class);
+            mFragments[THIRD] = findChildFragment(SecondFragment.class);
             mFragments[FOURTH] = findChildFragment(FouthFragment.class);
         }
         //注册

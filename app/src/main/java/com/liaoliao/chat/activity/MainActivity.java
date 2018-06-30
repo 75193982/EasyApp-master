@@ -13,7 +13,7 @@ public class MainActivity extends SupportActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_1);
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fragment_container, MainFragment.newInstance());
         }

@@ -1,1 +1,1 @@
-include ':app', ':liaoliaolibrary', ':sdk', ':presentation', ':ui', ':LQREmojiLibrary'
+include ':app', ':liaoliaolibrary',   ':LQREmojiLibrary', ':recognizer', ':sticker', ':IMLib', ':IMKit', ':CallLib', ':CallKit', ':RedPacket', ':contactcard'

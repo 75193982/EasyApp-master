@@ -1,19 +1,18 @@
 package com.liaoliao.chat.activity.login;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+
 import com.liaoliao.R;
-import com.liaoliao.chat.activity.MainActivity;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.base.BaseActivity;
 
@@ -22,19 +21,19 @@ import com.liaoliao.chat.model.UserAuth;
 import com.liaoliao.chat.net.JsonCallback;
 import com.liaoliao.chat.net.LzyResponse;
 import com.liaoliao.chat.net.URL;
-import com.liaoliao.chat.timchat.ui.SplashActivity;
+
+
 import com.liaoliao.chat.utils.LoginInformation;
 import com.liaoliao.chat.utils.Setting;
 import com.liaoliao.chat.view.CustomVideoView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Response;
-import com.tencent.qalsdk.util.BaseApplication;
+
 
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -61,7 +60,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_login;
+        return R.layout.activity_login_1;
     }
 
     @Override
@@ -254,8 +253,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 HttpHeaders headerstemp = new HttpHeaders();
                 headerstemp.put(MyApplication.token, "Bearer " + token);
                 OkGo.getInstance().addCommonHeaders(headerstemp);
-                Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
-                startActivity(intent);
+               // Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
+               // startActivity(intent);
                 finish();
 
             }

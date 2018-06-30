@@ -6,13 +6,11 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.Utils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import com.liaoliao.R;
-import com.liaoliao.chat.timchat.utils.Foreground;
+
 import com.liaoliao.chat.utils.Setting;
-import com.lqr.emoji.IImageLoader;
-import com.lqr.emoji.LQREmotionKit;
+
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -25,14 +23,11 @@ import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
 import com.mob.MobSDK;
-import com.tencent.imsdk.TIMGroupReceiveMessageOpt;
-import com.tencent.imsdk.TIMManager;
-import com.tencent.imsdk.TIMOfflinePushListener;
-import com.tencent.imsdk.TIMOfflinePushNotification;
-import com.tencent.qalsdk.sdk.MsfSdkUtils;
+
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
+
 
 import okhttp3.OkHttpClient;
 
@@ -48,28 +43,11 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Foreground.init(this);
         context = getApplicationContext();
-        if(MsfSdkUtils.isMainProcess(this)) {
-            TIMManager.getInstance().setOfflinePushListener(new TIMOfflinePushListener() {
-                @Override
-                public void handleNotification(TIMOfflinePushNotification notification) {
-                    if (notification.getGroupReceiveMsgOpt() == TIMGroupReceiveMessageOpt.ReceiveAndNotify){
-                        //消息被设置为需要提醒
-                        notification.doNotify(getApplicationContext(), R.mipmap.liaoliao);
-                    }
-                }
-            });
-        }
+
         mMainThreadId = android.os.Process.myTid();
         mHandler = new Handler();
-        //初始化表情控件
-        LQREmotionKit.init(context, new IImageLoader() {
-            @Override
-            public void displayImage(Context context, String path, ImageView imageView) {
-                Glide.with(context).load(path).centerCrop().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
-            }
-        });
+
         MobSDK.init(this);
         initOKGO();
         Utils.init(this);
