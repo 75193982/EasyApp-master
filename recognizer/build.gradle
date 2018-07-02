@@ -35,5 +35,5 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':IMKit')
-    api 'com.android.support:support-v4:26.0.0'
+    compileOnly 'com.android.support:support-v4:26.0.0'
 }

@@ -27,5 +27,5 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.google.code.gson:gson:2.2.4'
+    compileOnly 'com.google.code.gson:gson:2.2.4'
 }
