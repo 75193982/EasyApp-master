@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONReader;
 
+import com.liaoliao.App;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.utils.Setting;
 import com.lzy.okgo.OkGo;
@@ -56,8 +57,8 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         // 使用的设备信息
         // 可以随意添加,也可以什么都不传
         // 还可以在这里对所有的参数进行加密，均在这里实现
-        String token = new Setting(MyApplication.getContext()).loadString("token");
-        request.headers(MyApplication.token, "Bearer " + token);//
+        String token = new Setting(App.getContext()).loadString("token");
+        request.headers(App.token, "Bearer " + token);//
 
     }
 

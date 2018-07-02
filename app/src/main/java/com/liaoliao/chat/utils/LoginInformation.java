@@ -1,6 +1,7 @@
 package com.liaoliao.chat.utils;
 
 import com.google.gson.Gson;
+import com.liaoliao.App;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.model.UserAuth;
 
@@ -34,7 +35,7 @@ public class LoginInformation {
     public UserAuth getUser() {
         if (userAuth == null) {
             // 进入主页面
-            String userString = new Setting(MyApplication.getContext()).loadString("user");
+            String userString = new Setting(App.getContext()).loadString("user");
             userAuth = new UserAuth();
             try {
                 userAuth = new Gson().fromJson(userString, UserAuth.class);

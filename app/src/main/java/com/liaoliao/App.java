@@ -5,15 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.dumpapp.DumperPlugin;
 import com.facebook.stetho.inspector.database.DefaultDatabaseConnectionProvider;
 import com.facebook.stetho.inspector.protocol.ChromeDevtoolsDomain;
+import com.liaoliao.chat.application.MyApplication;
+import com.liaoliao.chat.utils.Setting;
 import com.liaoliao.db.Friend;
 import com.liaoliao.message.TestMessage;
 import com.liaoliao.message.provider.ContactNotificationMessageProvider;
@@ -26,9 +30,20 @@ import com.liaoliao.stetho.RongDatabaseFilesProvider;
 import com.liaoliao.stetho.RongDbFilesDumperPlugin;
 import com.liaoliao.ui.activity.UserDetailActivity;
 import com.liaoliao.utils.SharedPreferencesContext;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheEntity;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.cookie.CookieJarImpl;
+import com.lzy.okgo.cookie.store.DBCookieStore;
+import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
+import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
+import com.mob.MobSDK;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import cn.rongcloud.contactcard.ContactCardExtensionModule;
 import cn.rongcloud.contactcard.IContactCardClickListener;
@@ -46,16 +61,28 @@ import io.rong.imlib.model.UserInfo;
 import io.rong.push.RongPushClient;
 import io.rong.push.common.RongException;
 import io.rong.recognizer.RecognizeExtensionModule;
+import okhttp3.OkHttpClient;
 
 
 public class App extends MultiDexApplication {
 
     private static DisplayImageOptions options;
-
+    public static String token = "Authorization";
+    private static Context context;
+    private static Handler mHandler;//主线程Handler
+    private static long mMainThreadId;//主线程id
     @Override
     public void onCreate() {
 
         super.onCreate();
+
+        context = getApplicationContext();
+        mMainThreadId = android.os.Process.myTid();
+        mHandler = new Handler();
+        MobSDK.init(this);
+        initOKGO();
+        Utils.init(this);
+
         Stetho.initialize(new Stetho.Initializer(this) {
             @Override
             protected Iterable<DumperPlugin> getDumperPlugins() {
@@ -214,4 +241,60 @@ public class App extends MultiDexApplication {
         return null;
     }
 
+
+
+    private void initOKGO() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.put("Connection", "keep-alive");    //header不支持中文，不允许有特殊字符
+        headers.put("Proxy-Connection", "keep-alive");
+        headers.put("Content-Type", "application/json");
+        String localToken = new Setting(this).loadString(token);
+        headers.put(token, "Bearer " + localToken);
+        HttpParams params = new HttpParams();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
+        //log打印级别，决定了log显示的详细程度
+        loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BODY);
+        //log颜色级别，决定了log在控制台显示的颜色
+        loggingInterceptor.setColorLevel(Level.INFO);
+        builder.addInterceptor(loggingInterceptor);
+
+        /*//非必要情况，不建议使用，第三方的开源库，使用通知显示当前请求的log，不过在做文件下载的时候，这个库好像有问题，对文件判断不准确
+        builder.addInterceptor(new ChuckInterceptor(this));*/
+        //全局的读取超时时间
+        builder.readTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的写入超时时间
+        builder.writeTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的连接超时时间
+        builder.connectTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //使用sp保持cookie，如果cookie不过期，则一直有效
+        //builder.cookieJar(new CookieJarImpl(new SPCookieStore(this)));
+        //使用数据库保持cookie，如果cookie不过期，则一直有效
+        builder.cookieJar(new CookieJarImpl(new DBCookieStore(this)));
+        //使用内存保持cookie，app退出后，cookie消失
+        //builder.cookieJar(new CookieJarImpl(new MemoryCookieStore()));
+        OkGo okGo = OkGo.getInstance().init(this)                       //必须调用初始化
+                .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置将使用默认的
+                .setCacheMode(CacheMode.NO_CACHE)               //全局统一缓存模式，默认不使用缓存，可以不传
+                .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)   //全局统一缓存时间，默认永不过期，可以不传
+                .setRetryCount(3)//全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
+                .addCommonHeaders(headers)                      //全局公共头
+                .addCommonParams(params);
+    }
+
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static Handler getMainHandler() {
+        return mHandler;
+    }
+    public static long getMainThreadId() {
+        return mMainThreadId;
+    }
+
+    public static void setMainThreadId(long mMainThreadId) {
+        App.mMainThreadId = mMainThreadId;
+    }
 }

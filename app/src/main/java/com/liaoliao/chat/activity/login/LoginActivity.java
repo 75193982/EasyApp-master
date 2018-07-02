@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
 
+import com.liaoliao.App;
 import com.liaoliao.R;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.base.BaseActivity;
@@ -251,7 +252,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 setting.saveString("user", new Gson().toJson(userAuth));
                 LoginInformation.getInstance().setUser(userAuth);
                 HttpHeaders headerstemp = new HttpHeaders();
-                headerstemp.put(MyApplication.token, "Bearer " + token);
+                headerstemp.put(App.token, "Bearer " + token);
                 OkGo.getInstance().addCommonHeaders(headerstemp);
                // Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
                // startActivity(intent);

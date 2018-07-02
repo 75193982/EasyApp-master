@@ -11,8 +11,11 @@ import android.text.TextUtils;
 import android.view.Window;
 
 
+import com.liaoliao.App;
 import com.liaoliao.R;
 import com.liaoliao.SealAppContext;
+import com.liaoliao.chat.activity.MainActivity;
+import com.liaoliao.chat.utils.Setting;
 
 import io.rong.imkit.RongIM;
 
@@ -33,9 +36,10 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         context = this;
         SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-        String cacheToken = sp.getString("loginToken", "");
-        if (!TextUtils.isEmpty(cacheToken)) {
-            RongIM.connect(cacheToken, SealAppContext.getInstance().getConnectCallback());
+        //String cacheToken = sp.getString("loginToken", "");
+        String sign = new Setting(App.getContext()).loadString("sign");
+        if (!TextUtils.isEmpty(sign)) {
+            RongIM.connect(sign, SealAppContext.getInstance().getConnectCallback());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -54,12 +58,12 @@ public class SplashActivity extends Activity {
 
 
     private void goToMain() {
-        startActivity(new Intent(context, MainActivity.class));
+        startActivity(new Intent(context, com.liaoliao.chat.activity.MainActivity.class));
         finish();
     }
 
     private void goToLogin() {
-        startActivity(new Intent(context, LoginActivity.class));
+        startActivity(new Intent(context, com.liaoliao.chat.activity.login.LoginActivity.class));
         finish();
     }
 

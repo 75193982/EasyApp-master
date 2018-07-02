@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.liaoliao.App;
 import com.liaoliao.R;
 import com.liaoliao.chat.application.MyApplication;
 
@@ -202,7 +203,7 @@ public class CommonUtils {
      * @return
      */
     public static boolean isZh() {
-        Locale locale = MyApplication.getContext().getResources().getConfiguration().locale;
+        Locale locale = App.getContext().getResources().getConfiguration().locale;
         String language = locale.getLanguage();
         if (language.startsWith("zh")) {
             return true;

@@ -341,7 +341,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         editor.commit();
         LoadDialog.dismiss(mContext);
         NToast.shortToast(mContext, R.string.login_success);
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, com.liaoliao.chat.activity.MainActivity.class));
         finish();
     }
 }
