@@ -17,7 +17,7 @@ import com.liaoliao.chat.utils.Setting;
  */
 public class URL {
 
-    public static String IP = "http://192.168.100.6:80/" ;
+    public static String IP = "http://192.168.1.102:80/" ;
     public static String getUrl(String url){
         return IP + url;
     }

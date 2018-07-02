@@ -1,5 +1,6 @@
 package com.liaoliao.chat.activity.login;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 
 import com.liaoliao.App;
 import com.liaoliao.R;
+import com.liaoliao.chat.activity.MainActivity;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.base.BaseActivity;
 
@@ -254,8 +256,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 HttpHeaders headerstemp = new HttpHeaders();
                 headerstemp.put(App.token, "Bearer " + token);
                 OkGo.getInstance().addCommonHeaders(headerstemp);
-               // Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
-               // startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
 
             }
