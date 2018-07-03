@@ -100,9 +100,9 @@ public class App extends MultiDexApplication {
         });
 
         if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))) {
-
+/*
 //            LeakCanary.install(this);//内存泄露检测
-           /* RongPushClient.registerHWPush(this);
+            RongPushClient.registerHWPush(this);
             RongPushClient.registerMiPush(this, "2882303761517473625", "5451747338625");
             RongPushClient.registerMZPush(this, "112988", "2fa951a802ac4bd5843d694517307896");
             try {
@@ -142,8 +142,9 @@ public class App extends MultiDexApplication {
                 @Override
                 public void onChanged(ConnectionStatus status) {
                     if (status == ConnectionStatus.TOKEN_INCORRECT) {
-                        SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-                        final String cacheToken = sp.getString("sign", "");
+                        //SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+                       // final String cacheToken = sp.getString("loginToken", "");
+                        final String cacheToken=  new Setting(getContext()).loadString("sign");
                         if (!TextUtils.isEmpty(cacheToken)) {
                             RongIM.connect(cacheToken, SealAppContext.getInstance().getConnectCallback());
                         } else {
@@ -219,8 +220,9 @@ public class App extends MultiDexApplication {
     }
 
     private void openSealDBIfHasCachedToken() {
-        SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-        String cachedToken = sp.getString("loginToken", "");
+        //SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+        //String cachedToken = sp.getString("loginToken", "");
+        String cachedToken=  new Setting(getContext()).loadString("sign");
         if (!TextUtils.isEmpty(cachedToken)) {
             String current = getCurProcessName(this);
             String mainProcessName = getPackageName();

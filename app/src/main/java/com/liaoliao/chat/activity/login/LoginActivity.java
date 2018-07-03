@@ -1,5 +1,7 @@
 package com.liaoliao.chat.activity.login;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
@@ -14,6 +16,9 @@ import com.google.gson.Gson;
 
 import com.liaoliao.App;
 import com.liaoliao.R;
+import com.liaoliao.SealConst;
+import com.liaoliao.SealUserInfoManager;
+import com.liaoliao.chat.activity.MainActivity;
 import com.liaoliao.chat.application.MyApplication;
 import com.liaoliao.chat.base.BaseActivity;
 
@@ -58,7 +63,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @BindView(R.id.iv_qq)
     ImageView ivQq;
     private Platform qq;
-
+    private SharedPreferences.Editor editor;
+    private SharedPreferences sp;
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_login_1;
@@ -80,7 +86,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         videoview.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sport));
         //播放
         videoview.start();
-
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        editor = sp.edit();
     }
 
 
@@ -241,6 +248,13 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 new Setting(LoginActivity.this).saveString("token", token);
                 new Setting(LoginActivity.this).saveString("randomKey", randomKey);
                 new Setting(LoginActivity.this).saveString("sign", sign);
+                editor.putString(SealConst.SEALTALK_LOGIN_NAME, "");
+                editor.putString(SealConst.SEALTALK_LOGING_PORTRAIT, "");
+                editor.putString("loginToken", sign);
+                editor.putString(SealConst.SEALTALK_LOGIN_ID, userId);
+                editor.commit();
+                SealUserInfoManager.getInstance().openDB();
+                editor.commit();
                 Setting setting = new Setting(getApplicationContext());
                 UserAuth userAuth = new UserAuth();
                 userAuth.setGender(gender);
@@ -254,8 +268,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 HttpHeaders headerstemp = new HttpHeaders();
                 headerstemp.put(App.token, "Bearer " + token);
                 OkGo.getInstance().addCommonHeaders(headerstemp);
-               // Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
-               // startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
 
             }

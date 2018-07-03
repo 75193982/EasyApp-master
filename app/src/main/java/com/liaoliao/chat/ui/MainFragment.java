@@ -82,7 +82,7 @@ public class MainFragment extends BaseFragment implements
         isDebug = getActivity().getSharedPreferences("config", MODE_PRIVATE).getBoolean("isDebug", false);
         mCenterImage = (ImageView) view.findViewById (R.id.center_img);
         if (savedInstanceState == null) {
-            mFragments[FIRST] = com.liaoliao.chat.ui.ConversationListFragment.newInstance();
+            mFragments[FIRST] = mConversationListFragment;
             mFragments[SECOND] = SecondFragment.newInstance();
             mFragments[THIRD] = SecondFragment.newInstance();
             mFragments[FOURTH] = FouthFragment.newInstance();
@@ -209,6 +209,10 @@ public class MainFragment extends BaseFragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
+        RongIM.getInstance().removeUnReadMessageCountChangedObserver(this);
+        if (mHomeKeyReceiver != null) {
+            getActivity().unregisterReceiver(mHomeKeyReceiver);
+        }
         EventBus.getDefault().unregister(this);
     }
 
@@ -316,4 +320,7 @@ public class MainFragment extends BaseFragment implements
             }
         }
     }
+
+
+
 }

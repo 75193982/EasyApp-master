@@ -140,6 +140,19 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
 
         this.mAdapter.setOnPortraitItemClick(this);
         this.mList.setAdapter(this.mAdapter);
+        RongIMClient.getInstance().getConversationList(new RongIMClient.ResultCallback<List<Conversation>>() {
+            @Override
+            public void onSuccess(List<Conversation> conversations) {
+                if (conversations != null && conversations.size() > 0) {
+
+                }
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+
+            }
+        });
         return view;
     }
 
@@ -172,6 +185,13 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
         this.getConversationList(conversationTypes, new IHistoryDataResultCallback<List<Conversation>>() {
             @Override
             public void onResult(List<Conversation> data) {
+                List<Conversation> data1= new ArrayList<Conversation>();
+                for (int i = 0; i < data.size(); i++) {
+                    if(data.get(i).getConversationType().ordinal() != Conversation.ConversationType.SYSTEM.ordinal()){
+                        data1.add(data.get(i));
+                    }
+                }
+                data.clear();data.addAll(data1);
                 if (data != null && data.size() > 0) {
                    ConversationListFragment.this.makeUiConversationList(data);
                     RLog.d(ConversationListFragment.this.TAG, "getConversationList : listSize = " + data.size());

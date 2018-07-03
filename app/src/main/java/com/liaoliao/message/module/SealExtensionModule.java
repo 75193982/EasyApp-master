@@ -1,5 +1,7 @@
 package com.liaoliao.message.module;
 
+import com.jrmf360.rylib.modules.JrmfExtensionModule;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +84,14 @@ public class SealExtensionModule extends DefaultExtensionModule {
             }
             return pluginModules;
         } else {
-            return super.getPluginModules(conversationType);
+            List<IPluginModule> pluginModules = super.getPluginModules(conversationType);
+            for (IPluginModule module : pluginModules) {
+                if (module instanceof JrmfExtensionModule) {
+                    pluginModules.remove(module);
+                    break;
+                }
+            }
+            return pluginModules;
         }
     }
 

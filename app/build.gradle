@@ -51,6 +51,14 @@ MobSDK {
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '75193982'
+            storeFile file('C:/Users/Administrator/Desktop/liaoliao.jks')
+            storePassword '75193982'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion '27.0.3'
     defaultConfig {
@@ -67,11 +75,9 @@ android {
     packagingOptions {
         exclude '*.apk'
     }
-
-
     sourceSets {
         main {
-            jni.srcDirs =[]
+            jni.srcDirs = []
             jniLibs.srcDirs = ['libs']
         }
 
@@ -89,7 +95,6 @@ android {
             minifyEnabled false
         }
     }
-
     lintOptions {
         checkReleaseBuilds false
 
@@ -98,7 +103,6 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
-
 }
 
 
@@ -107,7 +111,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     api project(':liaoliaolibrary')
-//    api 'com.android.support:support-v4:26.0.0'
+    //    api 'com.android.support:support-v4:26.0.0'
     implementation project(':recognizer')
     implementation project(':contactcard')
     implementation project(':sticker')
