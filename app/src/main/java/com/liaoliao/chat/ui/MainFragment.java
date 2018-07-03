@@ -102,6 +102,7 @@ public class MainFragment extends BaseFragment implements
         EventBus.getDefault().register(this);
         initView(view);
         registerHomeKeyReceiver(getActivity());
+        initData();
         return view;
 
     }

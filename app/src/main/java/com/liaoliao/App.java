@@ -143,7 +143,7 @@ public class App extends MultiDexApplication {
                 public void onChanged(ConnectionStatus status) {
                     if (status == ConnectionStatus.TOKEN_INCORRECT) {
                         SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-                        final String cacheToken = sp.getString("loginToken", "");
+                        final String cacheToken = sp.getString("sign", "");
                         if (!TextUtils.isEmpty(cacheToken)) {
                             RongIM.connect(cacheToken, SealAppContext.getInstance().getConnectCallback());
                         } else {
