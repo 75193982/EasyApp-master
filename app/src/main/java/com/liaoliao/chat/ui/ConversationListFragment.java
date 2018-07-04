@@ -1,6 +1,7 @@
 package com.liaoliao.chat.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.liaoliao.ui.activity.SessionActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -140,19 +143,7 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
 
         this.mAdapter.setOnPortraitItemClick(this);
         this.mList.setAdapter(this.mAdapter);
-        RongIMClient.getInstance().getConversationList(new RongIMClient.ResultCallback<List<Conversation>>() {
-            @Override
-            public void onSuccess(List<Conversation> conversations) {
-                if (conversations != null && conversations.size() > 0) {
 
-                }
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-
-            }
-        });
         return view;
     }
 
@@ -214,6 +205,11 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
     }
 
     public void getConversationList(Conversation.ConversationType[] conversationTypes, final IHistoryDataResultCallback<List<Conversation>> callback) {
+
+
+
+
+
         RongIMClient.getInstance().getConversationList(new RongIMClient.ResultCallback<List<Conversation>>() {
             @Override
             public void onSuccess(List<Conversation> conversations) {
@@ -1195,7 +1191,12 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
                 }
 
                 uiConversation.setUnReadMessageCount(0);
-                RongIM.getInstance().startConversation(this.getActivity(), conversationType, uiConversation.getConversationTargetId(), uiConversation.getUIConversationTitle());
+
+                Intent i = new Intent(this.getActivity(), SessionActivity.class);
+                i.putExtra("sessionType",conversationType.ordinal());
+                i.putExtra("sessionId",uiConversation.getConversationTargetId());
+                startActivity(i);
+               // RongIM.getInstance().startConversation(this.getActivity(), conversationType, uiConversation.getConversationTargetId(), uiConversation.getUIConversationTitle());
             }
         }
 

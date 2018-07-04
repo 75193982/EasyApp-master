@@ -22,7 +22,7 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
-import com.mob.MobSDK;
+/*import com.mob.MobSDK;*/
 
 
 import java.util.concurrent.TimeUnit;
@@ -48,7 +48,7 @@ public class MyApplication extends Application {
         mMainThreadId = android.os.Process.myTid();
         mHandler = new Handler();
 
-        MobSDK.init(this);
+        //MobSDK.init(this);
         initOKGO();
         Utils.init(this);
     }

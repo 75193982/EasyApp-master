@@ -31,10 +31,13 @@
     <string name="env_test">当前连接测试环境</string>
     <string name="file_not_found">未找到文件，请稍后重试</string>
     <string name="google_service_not_available">google推送服务不可用，请检查google play设置</string>
-
+    <string name="search">搜索</string>
     <!-- home activity -->
     <string name="send_success">发送成功</string>
-
+    <string name="send">发送</string>
+    <string name="album">相册</string>
+    <string name="shot">拍摄</string>
+    <string name="red_pack">红包</string>
     <!-- home activity -->
     <string name="home_conversation_tab">会话</string>
     <string name="home_setting_tab">设置</string>
@@ -564,6 +567,23 @@
     <string name="group_notice_post_confirm">该公告会通知全部群成员，是否发布？</string>
     <string name="group_notice_prefix">\@所有人\n</string>
     <string name="search_friend">添加好友</string>
+    <string name="remove_self">%1$s被%2$s移出了群组</string>
+    <string name="file_out_of_date">文件已过期</string>
+    <string name="voice_rec">手指上滑，取消发送</string>
+    <string name="voice_cancel">松开手指，取消发送</string>
+    <string name="voice_short">录音时间太短</string>
+    <string name="voice_failure">录音失败！</string>
+
+    <string name="other_party">对方</string>
+    <string name="recall_success">撤回成功</string>
+    <string name="recall_fail">撤回失败</string>
+    <string name="recall_one_message">%1$s撤回了一条消息</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_fail">删除失败</string>
+    <string name="save_to_phone">保存到手机</string>
+    <string name="send_audio_fail">发送语音失败，文件长度为0或语音权限没有开启</string>
+    <string name="SET_TEXT_TYPING_TITLE">对方正在输入</string>
+    <string name="SET_VOICE_TYPING_TITLE">对方正在讲话</string>
     <string name="setdisplayname">设置备注</string>
     <string name="new_and_old_password">新旧密码一致</string>
     <string name="nickname_show">昵称:</string>
@@ -583,7 +603,11 @@
     <string name="ac_search_chat_detail_three">相关的聊天记录</string>
     <string name="ac_search_nick_name">昵称： </string>
     <string name="ac_contact_nick_name">昵称:</string>
-
+    <string name="copy">复制</string>
+    <string name="send_to_friend">发送给朋友</string>
+    <string name="delete">删除</string>
+    <string name="recall">撤回</string>
+    <string name="no_support_msg_type">不支持的消息类型</string>
     <string name="ac_search_friend">联系人</string>
     <string name="ac_search_group">群组</string>
     <string name="ac_search_chatting_records">聊天记录</string>

@@ -7,7 +7,7 @@
     <color name="window_background">#FFF5F5F5</color>
     <color name="transparent_background">#80ffffff</color>
     <color name="transparent">#00000000</color>
-
+    <color name="gray0">#464646</color>
     <color name="background">#F9F7F8</color>
     <color name="background_gray1">#EBEBEB</color>
     <color name="background_gray2">#E6E6E6</color>
@@ -20,7 +20,8 @@
     <color name="text_blue1">#1173CB</color>
     <color name="text_blue2">#1173CA</color>
     <color name="panel_black">#25272A</color>
-
+    <color name="green1">#45C01A</color>
+    <color name="green2">#A3DEA3</color>
     <color name="greens">#4cbfb5</color>
     <color name="btn_red">#D63F41</color>
     <color name="btn_red_hover">#E8484B</color>

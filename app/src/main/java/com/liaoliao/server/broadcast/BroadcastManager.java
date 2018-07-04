@@ -79,6 +79,23 @@ public class BroadcastManager {
         return instance;
     }
 
+
+
+    /**
+     * 添加
+     */
+    public void register(String action, BroadcastReceiver receiver) {
+        try {
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(action);
+            mContext.registerReceiver(receiver, filter);
+            receiverMap.put(action, receiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * 添加
      *
@@ -141,6 +158,21 @@ public class BroadcastManager {
      * @param action
      */
     public void destroy(String action) {
+        if (receiverMap != null) {
+            BroadcastReceiver receiver = receiverMap.remove(action);
+            if (receiver != null) {
+                mContext.unregisterReceiver(receiver);
+            }
+        }
+    }
+
+
+    /**
+     * 销毁广播
+     *
+     * @param action
+     */
+    public void unregister(String action) {
         if (receiverMap != null) {
             BroadcastReceiver receiver = receiverMap.remove(action);
             if (receiver != null) {

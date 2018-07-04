@@ -7,7 +7,8 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.widget.Toast;
 
-import com.liaoliao.chat.application.MyApplication;
+import com.liaoliao.App;
+
 
 
 import static com.zhy.autolayout.utils.ScreenUtils.getStatusBarHeight;
@@ -69,7 +70,7 @@ public class UIUtils {
      * @return
      */
     public static Context getContext() {
-        return MyApplication.getContext();
+        return App.getContext();
     }
 
     /**
@@ -135,7 +136,7 @@ public class UIUtils {
      * @return
      */
     public static Handler getMainThreadHandler() {
-        return MyApplication.getMainHandler();
+        return App.getMainHandler();
     }
 
     /**
@@ -144,7 +145,7 @@ public class UIUtils {
      * @return
      */
     public static long getMainThreadId() {
-        return MyApplication.getMainThreadId();
+        return App.getMainThreadId();
     }
 
     /**

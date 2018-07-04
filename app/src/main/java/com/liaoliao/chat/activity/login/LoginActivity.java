@@ -41,19 +41,19 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.sharesdk.framework.Platform;
+/*import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.friends.Wechat;*/
 
 /**
  * Created by lv on 2018/6/13 for EasyApp-master
  */
 
-public class LoginActivity extends BaseActivity implements PlatformActionListener {
+public class LoginActivity extends BaseActivity /*implements PlatformActionListener*/ {
     @BindView(R.id.videoview)
     CustomVideoView videoview;
     @BindView(R.id.image_view)
@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     ImageView ivWechat;
     @BindView(R.id.iv_qq)
     ImageView ivQq;
-    private Platform qq;
+   // private Platform qq;
     private SharedPreferences.Editor editor;
     private SharedPreferences sp;
     @Override
@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     }
 
 
-    //第三方授权登录
+   /* //第三方授权登录
     private void authorize(Platform plat) {
         if (plat == null) {
             return;
@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         //判断指定平台是否已经完成授权
        if (plat.isAuthValid()) {
          //  qq.removeAccount(true);
-           /* String token = plat.getDb().getToken();
+           *//* String token = plat.getDb().getToken();
             String userId = plat.getDb().getUserId();
             String name = plat.getDb().getUserName();
             String gender = plat.getDb().getUserGender();
@@ -115,7 +115,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                     //微信授权
                 }
                 return;
-            }*/
+            }*//*
         }
         // true不使用SSO授权，false使用SSO授权
         plat.SSOSetting(true);
@@ -124,7 +124,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         //获取用户资料
         plat.showUser(null);
     }
-
+*/
 
     @Override
     public void initData() {
@@ -177,7 +177,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
         videoview.stopPlayback();
     }
 
-    private PlatformDb platDB; //平台授权数据DB
+  /*  private PlatformDb platDB; //平台授权数据DB
 
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
@@ -232,7 +232,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
 
             onLogin(token,name,gender,headImageUrl,userId,platform.getName());
     }
-
+*/
 
 
     private void onLogin(final String headImageUrl, final String userId, String token, final String gender, final String name, final String type) {
@@ -248,6 +248,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 new Setting(LoginActivity.this).saveString("token", token);
                 new Setting(LoginActivity.this).saveString("randomKey", randomKey);
                 new Setting(LoginActivity.this).saveString("sign", sign);
+                new Setting(LoginActivity.this).saveString("userId", userId);
                 editor.putString(SealConst.SEALTALK_LOGIN_NAME, "");
                 editor.putString(SealConst.SEALTALK_LOGING_PORTRAIT, "");
                 editor.putString("loginToken", sign);
@@ -286,7 +287,7 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     }
 
 
-    @Override
+  /*  @Override
     public void onError(Platform platform, int i, Throwable throwable) {
 
     }
@@ -294,11 +295,11 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
     @Override
     public void onCancel(Platform platform, int i) {
 
-    }
+    }*/
 
 
 
-    @OnClick({R.id.iv_wechat, R.id.iv_qq})
+    /*@OnClick({R.id.iv_wechat, R.id.iv_qq})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_wechat:
@@ -307,8 +308,8 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 wechat.removeAccount(true);
                 authorize(wechat);
 
-               /* Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-                authorize(weibo);*/
+               *//* Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
+                authorize(weibo);*//*
                 break;
             case R.id.iv_qq:
                 // qq登录
@@ -317,5 +318,5 @@ public class LoginActivity extends BaseActivity implements PlatformActionListene
                 authorize(qq);
                 break;
         }
-    }
+    }*/
 }
