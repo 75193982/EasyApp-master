@@ -32,6 +32,7 @@ import com.liaoliao.chat.utils.Setting;
 import com.liaoliao.chat.utils.UIUtils;
 import com.liaoliao.db.Friend;
 import com.liaoliao.message.TestMessage;
+import com.liaoliao.message.module.DefaultExtensionModule;
 import com.liaoliao.message.provider.ContactNotificationMessageProvider;
 import com.liaoliao.message.provider.TestMessageProvider;
 import com.liaoliao.server.broadcast.BroadcastManager;
@@ -69,6 +70,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
+
 import cn.rongcloud.contactcard.ContactCardExtensionModule;
 import cn.rongcloud.contactcard.IContactCardClickListener;
 import cn.rongcloud.contactcard.IContactCardInfoProvider;
@@ -76,9 +78,10 @@ import cn.rongcloud.contactcard.message.ContactMessage;
 
 import io.rong.imageloader.core.DisplayImageOptions;
 import io.rong.imageloader.core.display.FadeInBitmapDisplayer;
-import io.rong.imkit.RongExtensionManager;
+
 import io.rong.imkit.RongIM;
 import io.rong.imkit.model.GroupNotificationMessageData;
+import io.rong.imkit.widget.RongExtensionManager;
 import io.rong.imkit.widget.provider.RealTimeLocationMessageProvider;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.ipc.RongExceptionHandler;
@@ -95,7 +98,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava.HttpException;
 
 
-public class App extends MultiDexApplication implements RongIMClient.OnReceiveMessageListener {
+public class App extends MultiDexApplication {
     public static List<Activity> activities = new LinkedList<>();
     private static DisplayImageOptions options;
     public static String token = "Authorization";
@@ -196,7 +199,7 @@ public class App extends MultiDexApplication implements RongIMClient.OnReceiveMe
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .build();
-
+            RongExtensionManager.getInstance().registerExtensionModule(new DefaultExtensionModule());
             //RongExtensionManager.getInstance().registerExtensionModule(new PTTExtensionModule(this, true, 1000 * 60));
             RongExtensionManager.getInstance().registerExtensionModule(new ContactCardExtensionModule(new IContactCardInfoProvider() {
                 @Override
@@ -367,7 +370,7 @@ public class App extends MultiDexApplication implements RongIMClient.OnReceiveMe
         App.mMainThreadId = mMainThreadId;
     }
 
-    @Override
+  /*  @Override
     public boolean onReceived(Message message, int i) {
         MessageContent messageContent = message.getContent();
         if (messageContent instanceof ContactNotificationMessage) {
@@ -586,5 +589,5 @@ public class App extends MultiDexApplication implements RongIMClient.OnReceiveMe
             e.printStackTrace();
         }
         return dataEntity;
-    }
+    }*/
 }

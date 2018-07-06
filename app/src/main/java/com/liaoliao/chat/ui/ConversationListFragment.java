@@ -1191,12 +1191,12 @@ public class ConversationListFragment extends com.liaoliao.chat.ui.UriFragment i
                 }
 
                 uiConversation.setUnReadMessageCount(0);
-
+/*
                 Intent i = new Intent(this.getActivity(), SessionActivity.class);
                 i.putExtra("sessionType",conversationType.ordinal());
                 i.putExtra("sessionId",uiConversation.getConversationTargetId());
-                startActivity(i);
-               // RongIM.getInstance().startConversation(this.getActivity(), conversationType, uiConversation.getConversationTargetId(), uiConversation.getUIConversationTitle());
+                startActivity(i);*/
+               RongIM.getInstance().startConversation(this.getActivity(), conversationType, uiConversation.getConversationTargetId(), uiConversation.getUIConversationTitle());
             }
         }
 

@@ -17,8 +17,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import io.rong.imkit.RongExtension;
-import io.rong.imkit.fragment.ConversationFragment;
+
+import io.rong.imkit.widget.Fragment.ConversationFragment;
+import io.rong.imkit.widget.RongExtension;
 import io.rong.imlib.CustomServiceConfig;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.cs.CustomServiceManager;

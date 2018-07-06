@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONException;
 import com.liaoliao.db.Friend;
 import com.liaoliao.db.GroupMember;
 import com.liaoliao.db.Groups;
+import com.liaoliao.message.module.DefaultExtensionModule;
 import com.liaoliao.message.module.SealExtensionModule;
 import com.liaoliao.server.broadcast.BroadcastManager;
 import com.liaoliao.server.network.http.HttpException;
@@ -34,13 +35,14 @@ import java.util.List;
 
 import io.rong.calllib.RongCallClient;
 import io.rong.calllib.RongCallSession;
-import io.rong.imkit.DefaultExtensionModule;
-import io.rong.imkit.IExtensionModule;
-import io.rong.imkit.RongExtensionManager;
+
+
 import io.rong.imkit.RongIM;
 import io.rong.imkit.model.GroupNotificationMessageData;
 import io.rong.imkit.model.GroupUserInfo;
 import io.rong.imkit.model.UIConversation;
+import io.rong.imkit.widget.IExtensionModule;
+import io.rong.imkit.widget.RongExtensionManager;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Group;

@@ -8,10 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 
-import io.rong.imkit.RongExtension;
-import io.rong.imkit.plugin.IPluginModule;
-import io.rong.imkit.plugin.IPluginRequestPermissionResultCallback;
+
+
 import io.rong.imkit.utilities.PermissionCheckUtil;
+import io.rong.imkit.widget.IPluginModule;
+import io.rong.imkit.widget.IPluginRequestPermissionResultCallback;
+import io.rong.imkit.widget.RongExtension;
 
 public class RecognizePlugin implements IPluginModule, IPluginRequestPermissionResultCallback {
 

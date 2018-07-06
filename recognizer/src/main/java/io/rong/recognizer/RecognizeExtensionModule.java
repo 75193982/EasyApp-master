@@ -3,10 +3,12 @@ package io.rong.recognizer;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.rong.imkit.IExtensionModule;
-import io.rong.imkit.RongExtension;
+
+import io.rong.imkit.widget.IExtensionModule;
+import io.rong.imkit.widget.RongExtension;
 import io.rong.imkit.emoticon.IEmoticonTab;
-import io.rong.imkit.plugin.IPluginModule;
+
+import io.rong.imkit.widget.IPluginModule;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 
