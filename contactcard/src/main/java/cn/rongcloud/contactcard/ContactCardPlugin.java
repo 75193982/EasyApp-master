@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import cn.rongcloud.contactcard.activities.ContactDetailActivity;
 import cn.rongcloud.contactcard.activities.ContactListActivity;
-import io.rong.imkit.RongExtension;
-import io.rong.imkit.plugin.IPluginModule;
+
+
+import io.rong.imkit.widget.IPluginModule;
+import io.rong.imkit.widget.RongExtension;
 import io.rong.imlib.model.Conversation;
 
 /**
@@ -66,7 +69,7 @@ public class ContactCardPlugin implements IPluginModule {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CONTACT && resultCode == Activity.RESULT_OK) {
             Intent intent = new Intent(context, ContactDetailActivity.class);
-            intent.putExtra("contact", data.getParcelableExtra("contact"));
+            intent.putExtra("contact", (Bundle) data.getParcelableExtra("contact"));
             intent.putExtra("conversationType", conversationType);
             intent.putExtra("targetId", targetId);
             context.startActivity(intent);

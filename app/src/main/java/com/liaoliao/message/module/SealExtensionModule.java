@@ -1,6 +1,10 @@
 package com.liaoliao.message.module;
 
 import com.jrmf360.rylib.modules.JrmfExtensionModule;
+import com.liaoliao.chat.widget.DefaultLocationPlugin;
+import com.liaoliao.chat.widget.IPluginModule;
+import com.liaoliao.chat.widget.ImagePlugin;
+import com.liaoliao.chat.widget.RongExtension;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -11,11 +15,7 @@ import java.util.List;
 
 import io.rong.imkit.emoticon.IEmoticonTab;
 
-import io.rong.imkit.widget.DefaultLocationPlugin;
-import io.rong.imkit.widget.IPluginModule;
-import io.rong.imkit.widget.ImagePlugin;
-import io.rong.imkit.widget.RongExtension;
-import io.rong.imkit.widget.provider.FilePlugin;
+
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 

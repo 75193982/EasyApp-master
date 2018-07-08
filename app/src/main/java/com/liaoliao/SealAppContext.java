@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONException;
+import com.liaoliao.chat.widget.IExtensionModule;
+import com.liaoliao.chat.widget.RongExtensionManager;
 import com.liaoliao.db.Friend;
 import com.liaoliao.db.GroupMember;
 import com.liaoliao.db.Groups;
@@ -41,8 +43,8 @@ import io.rong.imkit.RongIM;
 import io.rong.imkit.model.GroupNotificationMessageData;
 import io.rong.imkit.model.GroupUserInfo;
 import io.rong.imkit.model.UIConversation;
-import io.rong.imkit.widget.IExtensionModule;
-import io.rong.imkit.widget.RongExtensionManager;
+
+
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Group;

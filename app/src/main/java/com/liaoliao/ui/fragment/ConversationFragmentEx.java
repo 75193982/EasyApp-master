@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.liaoliao.SealCSEvaluateInfo;
+import com.liaoliao.chat.widget.Fragment.ConversationFragment;
+import com.liaoliao.chat.widget.RongExtension;
 import com.liaoliao.model.SealCSEvaluateItem;
 import com.liaoliao.ui.activity.ReadReceiptDetailActivity;
 import com.liaoliao.ui.widget.BottomEvaluateDialog;
@@ -18,8 +20,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 
-import io.rong.imkit.widget.Fragment.ConversationFragment;
-import io.rong.imkit.widget.RongExtension;
+
+
 import io.rong.imlib.CustomServiceConfig;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.cs.CustomServiceManager;

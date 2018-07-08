@@ -1,4 +1,4 @@
-package io.rong.imkit.widget;
+package com.liaoliao.chat.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.liaoliao.message.module.AudioPlugin;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -47,8 +47,6 @@ import io.rong.imkit.emoticon.IEmoticonClickListener;
 import io.rong.imkit.emoticon.IEmoticonTab;
 import io.rong.imkit.menu.ISubMenuItemClickListener;
 import io.rong.imkit.menu.InputSubMenu;
-
-
 import io.rong.imkit.utilities.ExtensionHistoryUtil;
 import io.rong.imkit.utilities.PermissionCheckUtil;
 import io.rong.imlib.RongIMClient;
@@ -114,8 +112,8 @@ public class RongExtension extends LinearLayout {
         this.collapsed = true;
         this.originalTop = 0;
         this.originalBottom = 0;
-        TypedArray a = context.obtainStyledAttributes(attrs, io.rong.imkit.R.styleable.RongExtension);
-        int attr = a.getInt(io.rong.imkit.R.styleable.RongExtension_RCStyle, 291);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RongExtension);
+        int attr = a.getInt(R.styleable.RongExtension_RCStyle, 291);
         a.recycle();
         this.initView();
         this.initData();
@@ -201,6 +199,8 @@ public class RongExtension extends LinearLayout {
         while (var1.hasNext()) {
             IExtensionModule module = (IExtensionModule) var1.next();
             List<IPluginModule> pluginModules = module.getPluginModules(this.mConversationType);
+            pluginModules.add(new AudioPlugin());
+            pluginModules.add(new VideoPlugin());
             if (pluginModules != null && this.mPluginAdapter != null) {
                 this.mPluginAdapter.addPlugins(pluginModules);
             }
@@ -247,8 +247,8 @@ public class RongExtension extends LinearLayout {
     private void setMenuVisibility(int visibility, List<InputMenu> inputMenuList) {
         if (this.mMenuContainer == null) {
             LayoutInflater inflater = LayoutInflater.from(this.getContext());
-            this.mMenuContainer = (ViewGroup) inflater.inflate(io.rong.imkit.R.layout.rc_ext_menu_container, (ViewGroup) null);
-            this.mMenuContainer.findViewById(io.rong.imkit.R.id.rc_switch_to_keyboard).setOnClickListener(new OnClickListener() {
+            this.mMenuContainer = (ViewGroup) inflater.inflate(R.layout.rc_ext_menu_container, (ViewGroup) null);
+            this.mMenuContainer.findViewById(R.id.rc_switch_to_keyboard).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     setExtensionBarVisibility(View.VISIBLE);
@@ -261,12 +261,12 @@ public class RongExtension extends LinearLayout {
                 LinearLayout rootMenu = (LinearLayout) inflater.inflate(R.layout.rc_ext_root_menu_item, (ViewGroup) null);
                 LayoutParams lp = new LayoutParams(-1, -1, 1.0F);
                 rootMenu.setLayoutParams(lp);
-                TextView title = (TextView) rootMenu.findViewById(io.rong.imkit.R.id.rc_menu_title);
+                TextView title = (TextView) rootMenu.findViewById(R.id.rc_menu_title);
                 title.setText(menu.title);
-                ImageView iv = (ImageView) rootMenu.findViewById(io.rong.imkit.R.id.rc_menu_icon);
+                ImageView iv = (ImageView) rootMenu.findViewById(R.id.rc_menu_icon);
                 if (menu.subMenuList != null && menu.subMenuList.size() > 0) {
                     iv.setVisibility(View.VISIBLE);
-                    iv.setImageResource(io.rong.imkit.R.drawable.rc_menu_trangle);
+                    iv.setImageResource(R.drawable.rc_menu_trangle);
                 }
 
                 final int finalI = i;

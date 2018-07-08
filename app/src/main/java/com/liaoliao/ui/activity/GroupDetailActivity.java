@@ -969,9 +969,9 @@ public class GroupDetailActivity extends BaseActivity implements View.OnClickLis
         mSearchMessagesLinearLayout.setOnClickListener(this);
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         SealAppContext.getInstance().popActivity(this);
         super.onBackPressed();
-    }
+    }*/
 }

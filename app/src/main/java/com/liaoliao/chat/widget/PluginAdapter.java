@@ -1,4 +1,4 @@
-package io.rong.imkit.widget;
+package com.liaoliao.chat.widget;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -13,10 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.liaoliao.App;
+import com.liaoliao.message.module.AudioPlugin;
+
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 
 /**
@@ -57,18 +58,22 @@ public class PluginAdapter {
     }
 
     public List<IPluginModule> getPluginModules() {
-
-       /* mPluginModules.add(new AudioPlugin());
-        mPluginModules.add(new VideoPlugin());*/
-
         return this.mPluginModules;
     }
 
     public void addPlugins(List<IPluginModule> plugins) {
-        for(int i = 0; plugins != null && i < plugins.size(); ++i) {
+       A: for(int i = 0; plugins != null && i < plugins.size(); ++i) {
+
+            for (int j = 0; j <mPluginModules.size() ; j++) {
+                if(this.mPluginModules.get(j).obtainTitle(App.getContext()).equals(plugins.get(i).obtainTitle(App.getContext()))){
+                    continue A;
+                }
+            }
+            if(!plugins.get(i).obtainTitle(App.getContext()).equals(App.getContext().getString(io.rong.recognizer.R.string.rc_plugin_recognize)))
             this.mPluginModules.add(plugins.get(i));
         }
-
+       /* mPluginModules.add(new AudioPlugin());
+        mPluginModules.add(new VideoPlugin());*/
     }
 
     public void addPlugin(IPluginModule pluginModule) {

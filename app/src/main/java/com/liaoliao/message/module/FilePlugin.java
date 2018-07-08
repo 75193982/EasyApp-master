@@ -8,6 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
+import com.liaoliao.chat.widget.IPluginModule;
+import com.liaoliao.chat.widget.IPluginRequestPermissionResultCallback;
+import com.liaoliao.chat.widget.RongExtension;
+
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -18,9 +22,9 @@ import io.rong.imkit.model.FileInfo;
 
 
 import io.rong.imkit.utilities.PermissionCheckUtil;
-import io.rong.imkit.widget.IPluginModule;
-import io.rong.imkit.widget.IPluginRequestPermissionResultCallback;
-import io.rong.imkit.widget.RongExtension;
+
+
+
 import io.rong.imlib.IRongCallback;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;

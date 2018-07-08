@@ -204,11 +204,11 @@ public class GroupListActivity extends BaseActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         finish();
         super.onBackPressed();
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

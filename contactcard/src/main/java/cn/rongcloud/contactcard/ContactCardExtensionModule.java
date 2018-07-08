@@ -5,11 +5,14 @@ import java.util.List;
 
 import cn.rongcloud.contactcard.message.ContactMessage;
 import cn.rongcloud.contactcard.message.ContactMessageItemProvider;
-import io.rong.imkit.IExtensionModule;
-import io.rong.imkit.RongExtension;
+
+
 import io.rong.imkit.RongIM;
 import io.rong.imkit.emoticon.IEmoticonTab;
-import io.rong.imkit.plugin.IPluginModule;
+
+import io.rong.imkit.widget.IExtensionModule;
+import io.rong.imkit.widget.IPluginModule;
+import io.rong.imkit.widget.RongExtension;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 
