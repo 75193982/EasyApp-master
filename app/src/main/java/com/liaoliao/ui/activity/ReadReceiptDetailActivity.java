@@ -640,9 +640,9 @@ public class ReadReceiptDetailActivity extends BaseActivity {
         return null;
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         SealAppContext.getInstance().popActivity(this);
         super.onBackPressed();
-    }
+    }*/
 }

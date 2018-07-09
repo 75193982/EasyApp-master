@@ -23,9 +23,10 @@ import com.liaoliao.server.network.http.HttpException;
 import com.liaoliao.server.utils.NToast;
 import com.umeng.analytics.MobclickAgent;
 
+import me.yokeyword.fragmentation.SupportActivity;
 
 
-public abstract class BaseActivity extends FragmentActivity implements OnDataListener {
+public abstract class BaseActivity extends SupportActivity implements OnDataListener {
 
     protected Context mContext;
     public AsyncTaskManager mAsyncTaskManager;
@@ -267,10 +268,7 @@ public abstract class BaseActivity extends FragmentActivity implements OnDataLis
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

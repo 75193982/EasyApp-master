@@ -514,13 +514,13 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
             super.onFailure(requestCode, state, result);
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         if (mType == CLICK_CONVERSATION_USER_PORTRAIT) {
             SealAppContext.getInstance().popActivity(this);
         }
         super.onBackPressed();
-    }
+    }*/
 
     @Override
     public void onHeadLeftButtonClick(View v) {

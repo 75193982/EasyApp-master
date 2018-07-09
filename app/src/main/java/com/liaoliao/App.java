@@ -30,6 +30,8 @@ import com.liaoliao.chat.model.response.ContactNotificationMessageData;
 import com.liaoliao.chat.utils.LogUtils;
 import com.liaoliao.chat.utils.Setting;
 import com.liaoliao.chat.utils.UIUtils;
+import com.liaoliao.chat.widget.RecognizeExtensionModule;
+import com.liaoliao.chat.widget.RongExtensionManager;
 import com.liaoliao.db.Friend;
 import com.liaoliao.message.TestMessage;
 import com.liaoliao.message.module.DefaultExtensionModule;
@@ -81,7 +83,7 @@ import io.rong.imageloader.core.display.FadeInBitmapDisplayer;
 
 import io.rong.imkit.RongIM;
 import io.rong.imkit.model.GroupNotificationMessageData;
-import io.rong.imkit.widget.RongExtensionManager;
+
 import io.rong.imkit.widget.provider.RealTimeLocationMessageProvider;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.ipc.RongExceptionHandler;
@@ -93,7 +95,8 @@ import io.rong.message.ContactNotificationMessage;
 import io.rong.message.GroupNotificationMessage;
 import io.rong.push.RongPushClient;
 import io.rong.push.common.RongException;
-import io.rong.recognizer.RecognizeExtensionModule;
+
+
 import okhttp3.OkHttpClient;
 import retrofit2.adapter.rxjava.HttpException;
 
@@ -201,7 +204,7 @@ public class App extends MultiDexApplication {
                     .build();
             RongExtensionManager.getInstance().registerExtensionModule(new DefaultExtensionModule());
             //RongExtensionManager.getInstance().registerExtensionModule(new PTTExtensionModule(this, true, 1000 * 60));
-            RongExtensionManager.getInstance().registerExtensionModule(new ContactCardExtensionModule(new IContactCardInfoProvider() {
+          /*  RongExtensionManager.getInstance().registerExtensionModule(new ContactCardExtensionModule(new IContactCardInfoProvider() {
                 @Override
                 public void getContactAllInfoProvider(final IContactCardInfoCallback contactInfoCallback) {
                     SealUserInfoManager.getInstance().getFriends(new SealUserInfoManager.ResultCallback<List<Friend>>() {
@@ -247,7 +250,7 @@ public class App extends MultiDexApplication {
                     intent.putExtra("friend", friend);
                     view.getContext().startActivity(intent);
                 }
-            }));
+            }));*/
             RongExtensionManager.getInstance().registerExtensionModule(new RecognizeExtensionModule());
         }
     }

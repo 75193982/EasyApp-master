@@ -2,10 +2,12 @@ package com.liaoliao.message.module;
 
 import android.content.Context;
 
+import com.liaoliao.chat.widget.IPluginModule;
+
 import java.util.List;
 
 
-import io.rong.imkit.widget.IPluginModule;
+
 import io.rong.imlib.model.Conversation;
 
 /**
