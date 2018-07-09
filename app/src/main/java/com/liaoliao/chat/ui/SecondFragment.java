@@ -27,10 +27,20 @@ public class SecondFragment extends BaseFragment {
         return fragment;
     }
 
-    @Nullable
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_second, container, false);
-        return view;
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_second;
+    }
+
+    @Override
+    protected void setUpView() {
+
+    }
+
+    @Override
+    protected void setUpData() {
+
     }
 }

@@ -27,10 +27,19 @@ public class FouthFragment extends BaseFragment {
         return fragment;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fourth, container, false);
-        return view;
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_fourth;
+    }
+
+    @Override
+    protected void setUpView() {
+
+    }
+
+    @Override
+    protected void setUpData() {
+
     }
 }

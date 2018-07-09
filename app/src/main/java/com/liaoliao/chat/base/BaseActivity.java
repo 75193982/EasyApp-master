@@ -10,12 +10,13 @@ import android.util.Log;
 
 
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by lenovo on 2018/6/9.
  */
 
-public abstract class BaseActivity extends AppCompatActivity  {
+public abstract class BaseActivity extends SupportActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

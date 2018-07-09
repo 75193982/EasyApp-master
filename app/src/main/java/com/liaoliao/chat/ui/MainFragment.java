@@ -48,7 +48,7 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * created by LiChengalin at 2017/4/5/0005
  */
-public class MainFragment extends BaseFragment implements
+public class MainFragment extends SupportFragment implements
         IUnReadMessageObserver {
 
     private static final int FIRST = 0;
@@ -82,9 +82,9 @@ public class MainFragment extends BaseFragment implements
         isDebug = getActivity().getSharedPreferences("config", MODE_PRIVATE).getBoolean("isDebug", false);
         mCenterImage = (ImageView) view.findViewById (R.id.center_img);
         if (savedInstanceState == null) {
-            mFragments[FIRST] = mConversationListFragment;
+            mFragments[FIRST] = FirstFragment.newInstance();
             mFragments[SECOND] = SecondFragment.newInstance();
-            mFragments[THIRD] = SecondFragment.newInstance();
+            mFragments[THIRD] = mConversationListFragment;
             mFragments[FOURTH] = FouthFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_tab_container, FIRST,
                     mFragments[FIRST],
@@ -93,9 +93,9 @@ public class MainFragment extends BaseFragment implements
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
             // 这里我们需要拿到mFragments的引用,也可以通过getChildFragmentManager.getFragments()自行进行判断查找(效率更高些),用下面的方法查找更方便些
-            mFragments[FIRST] = findChildFragment(com.liaoliao.chat.ui.ConversationListFragment.class);
+            mFragments[FIRST] = findChildFragment(FirstFragment.class);
             mFragments[SECOND] = findChildFragment(SecondFragment.class);
-            mFragments[THIRD] = findChildFragment(SecondFragment.class);
+            mFragments[THIRD] = findChildFragment(com.liaoliao.chat.ui.ConversationListFragment.class);
             mFragments[FOURTH] = findChildFragment(FouthFragment.class);
         }
         //注册

@@ -26,10 +26,20 @@ public class ThirdFragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
-    @Nullable
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
-        return view;
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_third;
+    }
+
+    @Override
+    protected void setUpView() {
+
+    }
+
+    @Override
+    protected void setUpData() {
+
     }
 }

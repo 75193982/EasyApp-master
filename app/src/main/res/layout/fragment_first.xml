@@ -1,14 +1,70 @@
-<com.zhy.autolayout.AutoLinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llRoot"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
-    <TextView
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="FirstFragment"/>
+        android:id="@+id/xRecyclerView"
+        >
 
-</com.zhy.autolayout.AutoLinearLayout>
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/umeeting_title_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:drawableLeft="@drawable/location"
+            android:text="盐城"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/city1"
+            android:layout_toRightOf="@+id/umeeting_title_city"
+            android:background="@drawable/search_shape"
+            android:drawableLeft="@drawable/search_btn"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:text="输入宝宝ID"
+            android:textColor="@color/gray8" />
+        <TextView
+            android:id="@+id/city1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="            "
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

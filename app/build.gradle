@@ -85,6 +85,7 @@ dependencies {
     implementation files('libs/pinyin4j-2.5.0.jar')
     implementation files('libs/joda-time-2.5.jar')
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.1.0'
+    implementation project(':xrecyclerview')
 }
 
 configurations.all {

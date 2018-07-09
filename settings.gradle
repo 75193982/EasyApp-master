@@ -1,1 +1,2 @@
-include ':app', ':liaoliaolibrary',   ':LQREmojiLibrary', ':recognizer', ':sticker', ':IMLib', ':IMKit', ':CallLib', ':CallKit', ':RedPacket', ':contactcard'
+include ':app', ':liaoliaolibrary', ':LQREmojiLibrary', ':recognizer', ':sticker', ':IMLib', ':IMKit', ':CallLib', ':CallKit', ':RedPacket', ':contactcard', ':xrecyclerview'
+project(':xrecyclerview').projectDir = new File('XRecyclerView-master/xrecyclerview')
