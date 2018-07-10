@@ -7,10 +7,12 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Window;
 
 
+import com.jaeger.library.StatusBarUtil;
 import com.liaoliao.App;
 import com.liaoliao.R;
 import com.liaoliao.SealAppContext;
@@ -34,8 +36,9 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_splash);
+        StatusBarUtil.setTransparent(this);
         context = this;
         SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
         //String cacheToken = sp.getString("loginToken", "");

@@ -40,6 +40,9 @@
     <color name="gray7">#999999</color>
     <color name="gray8">#D9D9D9</color>
     <color name="gray9">#DBDFE0</color>
+    <color name="holo_blue_light">#00A0EA</color>
+    <color name="navigationBarColor">@android:color/black</color>
+    <color name="windowBackground">@android:color/white</color>
     <!--gray1-->
     <color name="colorGray1">#F0F0F0</color>
     <!--light gray-->
