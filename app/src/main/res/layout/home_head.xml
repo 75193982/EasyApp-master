@@ -40,9 +40,9 @@
             android:layout_height="wrap_content">
             <ImageView
 
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:src="@mipmap/ic_chatroom_hot_third_diamond"
-                android:layout_height="wrap_content"/>
+                android:layout_height="20dp"/>
 
         </RelativeLayout>
         <TextView
@@ -52,7 +52,7 @@
             android:layout_toRightOf="@+id/iv_p"
             android:layout_width="wrap_content"
             android:textColor="@color/black"
-            android:textSize="@dimen/h5"
+            android:textSize="@dimen/h7"
             android:text="Top排行榜"
             android:layout_height="wrap_content"/>
 
