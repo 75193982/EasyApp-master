@@ -1,5 +1,6 @@
 package com.liaoliao.ui.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.jaeger.library.StatusBarUtil;
 import com.liaoliao.R;
 import com.liaoliao.server.SealAction;
 import com.liaoliao.server.network.async.AsyncTaskManager;
@@ -28,10 +30,10 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity implements OnDataListener {
 
-    protected Context mContext;
+    public Context mContext;
     public AsyncTaskManager mAsyncTaskManager;
     protected SealAction action;
-
+    public Activity mActivity;
     private ViewFlipper mContentView;
     protected LinearLayout mHeadLayout;
     protected Button mBtnLeft;
@@ -44,9 +46,11 @@ public abstract class BaseActivity extends SupportActivity implements OnDataList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.layout_base);
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);// 使得音量键控制媒体声音
         mContext = this;
-
+        mActivity= this;
+        StatusBarUtil.setTranslucentForCoordinatorLayout(mActivity,0);
         // 初始化公共头部
         mContentView = (ViewFlipper) super.findViewById(R.id.layout_container);
         mHeadLayout = (LinearLayout) super.findViewById(R.id.layout_head);

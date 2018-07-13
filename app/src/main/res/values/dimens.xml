@@ -25,6 +25,10 @@
     <dimen name="h10">18sp</dimen>
     <!--h11-->
     <dimen name="h11">19sp</dimen>
+
+    <dimen name="d5">5dp</dimen>
+
+    <dimen name="d10">10dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="de_conversation_item_name_size">16sp</dimen>
     <dimen name="de_message_send_status_image_size">17dp</dimen>

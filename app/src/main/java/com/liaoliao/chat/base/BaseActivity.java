@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 
+import com.jaeger.library.StatusBarUtil;
+import com.liaoliao.R;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
@@ -28,10 +30,16 @@ public abstract class BaseActivity extends SupportActivity {
         init();
         //子类不再需要设置布局ID，也不再需要使用ButterKnife.bind()
         setContentView(provideContentViewId());
+        StatusBarUtil.setTranslucentForCoordinatorLayout(this,0);
         ButterKnife.bind(this);
         initView();
         initData();
         initListener();
+        setStatusBar();
+    }
+
+    protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {

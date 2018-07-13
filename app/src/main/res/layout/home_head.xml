@@ -3,11 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
+    android:background="@color/main_title_backgroud"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+
         />
+
+    <com.liaoliao.chat.widget.MyRecyclerView
+        android:id="@+id/recyclerView_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/d10"
+        android:paddingRight="@dimen/d10"
+        android:paddingTop="@dimen/d10"
+
+        >
+    </com.liaoliao.chat.widget.MyRecyclerView>
+
+    <RelativeLayout
+        android:padding="@dimen/d5"
+        android:layout_marginTop="@dimen/d5"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/iv_p"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:src="@mipmap/ic_chatroom_hot_third_diamond"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+        <TextView
+            android:layout_marginLeft="@dimen/d5"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_p"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/h5"
+            android:text="Top排行榜"
+            android:layout_height="wrap_content"/>
+
+
+        <com.liaoliao.chat.widget.PileLayout
+            android:id="@+id/pile_layout"
+            android:layout_marginRight="@dimen/d5"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:PileLayout_pileWidth="15dp"/>
+    </RelativeLayout>
 </LinearLayout>

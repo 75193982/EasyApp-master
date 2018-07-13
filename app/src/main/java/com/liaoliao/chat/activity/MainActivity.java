@@ -1,16 +1,20 @@
 package com.liaoliao.chat.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 
-
+import com.liaoliao.App;
 import com.liaoliao.R;
 import com.liaoliao.chat.ui.MainFragment;
 import com.liaoliao.chat.utils.StatusBarUtil;
+import com.liaoliao.chat.utils.StatusBarUtils;
 
 
 import me.yokeyword.fragmentation.SupportActivity;
@@ -20,18 +24,15 @@ public class MainActivity extends SupportActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //设置全屏
-      /*  this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-       */
+        setContentView(R.layout.activity_main_1);
 
-      setContentView(R.layout.activity_main_1);
-       // StatusBarUtil.setTransparent(this);
+        com.jaeger.library.StatusBarUtil.setTranslucentForCoordinatorLayout(this,0);
 
-        StatusBarUtil.immersive(this);
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fragment_container, MainFragment.newInstance());
         }
+        //changStatusIconCollor(true);
+        StatusBarUtils.StatusBarLightMode(this);
     }
     @Override
     public void onBackPressedSupport() {
@@ -44,4 +45,19 @@ public class MainActivity extends SupportActivity {
         startActivity(launcherIntent);
     }
 
+
+    public void changStatusIconCollor(boolean setDark) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            View decorView = getWindow().getDecorView();
+            if(decorView != null){
+                int vis = decorView.getSystemUiVisibility();
+                if(setDark){
+                    vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else{
+                    vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                }
+                decorView.setSystemUiVisibility(vis);
+            }
+        }
+    }
 }

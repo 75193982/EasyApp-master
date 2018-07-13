@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         sp = getSharedPreferences("config", MODE_PRIVATE);
         editor = sp.edit();
         initView();
-        StatusBarUtil.setTransparent(this);
+
     }
 
     private void initView() {

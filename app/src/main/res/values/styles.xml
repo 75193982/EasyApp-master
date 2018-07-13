@@ -6,8 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/clubToolbar</item>
     </style>
+<style name="clubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
 
+
+</style>
     <style name="ActTheme" parent="Base.Theme.DesignDemo">
         <item name="android:windowIsTranslucent">false</item>
     </style>

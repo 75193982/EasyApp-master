@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llRoot"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/main_title_backgroud"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     >
 
 
@@ -23,24 +25,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
+        android:elevation="2dp"
         app:layout_collapseMode="pin">
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/title_layout"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:focusable="true"
         android:focusableInTouchMode="true">
         <TextView
+            android:layout_marginLeft="8dp"
             android:layout_centerVertical="true"
-            android:id="@+id/umeeting_title_city"
+            android:id="@+id/tv_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:padding="5dp"
             android:drawableLeft="@drawable/location"
             android:text="盐城"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="14sp" />
         <TextView
             android:layout_centerVertical="true"
@@ -48,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/city1"
-            android:layout_toRightOf="@+id/umeeting_title_city"
+            android:layout_toRightOf="@+id/tv_city_name"
             android:background="@drawable/search_shape"
             android:drawableLeft="@drawable/search_btn"
             android:drawablePadding="10dp"
@@ -56,7 +60,7 @@
             android:paddingLeft="15dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:textSize="14sp"
             android:text="输入宝宝ID"
