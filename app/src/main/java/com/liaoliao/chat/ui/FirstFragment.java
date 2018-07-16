@@ -25,6 +25,8 @@ import com.liaoliao.chat.adapter.HomeAdapter;
 import com.liaoliao.chat.base.BaseFragment;
 import com.liaoliao.chat.loader.GlideImageLoader;
 import com.liaoliao.chat.model.HeaderClass;
+import com.liaoliao.chat.model.HserSection;
+import com.liaoliao.chat.model.UserBao;
 import com.liaoliao.chat.widget.CircleImageView;
 import com.liaoliao.chat.widget.MyRecyclerView;
 
@@ -89,39 +91,55 @@ public class FirstFragment extends BaseFragment {
         images.add("http://img.zcool.cn/community/017f93570b3d876ac7251f056a2209.png");
         images.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        HomeAdapter adapter = new HomeAdapter(R.layout.layout_bottom, list);
+        List<HserSection> list = new ArrayList<HserSection>();
+        HserSection hserSection ;
+        for (int i = 0; i <10 ; i++) {
+            hserSection= new HserSection(true,"视频聊天"+i);
+            list.add(hserSection);
+            UserBao userBao = new UserBao();
+            userBao.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763385496&di=552661e3ea0489549d6d00531babcb3a&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201512%2F10%2F20151210131006_xzeKh.jpeg";
+            userBao.price = "25";
+            userBao.name="小菠萝"+i;
+            userBao.uint="元";
+            list.add( new HserSection(userBao));
+            UserBao userBao5 = new UserBao();
+            userBao5.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763530101&di=ef064324ef99bca0833e1cefa16f5b89&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201512%2F13%2F20151213190125_KcZnY.jpeg";
+            userBao5.price = "25";
+            userBao5.name="小菠萝"+i;
+            userBao5.uint="元";
+            list.add( new HserSection(userBao5));
+            UserBao userBao4 = new UserBao();
+            userBao4.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763385496&di=552661e3ea0489549d6d00531babcb3a&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201512%2F10%2F20151210131006_xzeKh.jpeg";
+            userBao4.price = "25";
+            userBao4.name="小菠萝"+i;
+            userBao4.uint="元";
+            list.add( new HserSection(userBao4));
+            UserBao userBao3 = new UserBao();
+            userBao3.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763578112&di=ee42f926b7d378bfc873ce0c42fda5e9&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201504%2F14%2F20150414H2406_rKehA.jpeg";
+            userBao3.price = "25";
+            userBao3.uint="元";
+            userBao3.name="小菠萝"+i;
+            list.add( new HserSection(userBao3));
+            UserBao userBao2 = new UserBao();
+            userBao2.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763564417&di=db3c18c10b10ad67188c2aecfa1eedac&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201501%2F14%2F20150114145326_sQPjW.jpeg";
+            userBao2.price = "25";
+            userBao2.name="小菠萝"+i;
+            userBao2.uint="元";
+            list.add( new HserSection(userBao));
+            UserBao userBao1 = new UserBao();
+            userBao1.headImg="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531763545720&di=2846823ec8fc4f3ac169e5135684df01&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201512%2F10%2F20151210135838_Y2SvK.jpeg";
+            userBao1.price = "25";
+            userBao1.name="小菠萝"+i;
+            userBao1.uint="元";
+            list.add( new HserSection(userBao1));
+        }
+
+
+
+
+        HomeAdapter adapter = new HomeAdapter(list);
 
         View view = View.inflate(getContext(), R.layout.home_head, null);
         Banner banner = view.findViewById(R.id.banner);

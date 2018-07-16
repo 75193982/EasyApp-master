@@ -35,11 +35,11 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
+           <!-- <ImageView
 
                 android:layout_width="20dp"
                 android:src="@mipmap/ic_chatroom_hot_third_diamond"
-                android:layout_height="20dp"/>
+                android:layout_height="20dp"/>-->
 
         </RelativeLayout>
         <TextView

@@ -15,4 +15,5 @@ public class HserSection extends SectionEntity<UserBao> {
     public HserSection(UserBao userBao) {
         super(userBao);
     }
+
 }
