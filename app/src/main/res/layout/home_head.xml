@@ -18,9 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-
         android:paddingTop="@dimen/d10"
-
         >
     </com.liaoliao.chat.widget.MyRecyclerView>
 
