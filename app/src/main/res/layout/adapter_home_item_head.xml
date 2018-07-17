@@ -3,36 +3,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/whites"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/d8"
-    android:paddingTop="@dimen/d8"
-    android:paddingRight="@dimen/d5"
     android:layout_height="wrap_content">
-
+<View
+    android:id="@+id/v_bg"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d5"
+    android:background="@color/main_title_backgroud"
+    />
     <TextView
+       android:paddingTop="@dimen/d10"
+        android:paddingBottom="@dimen/d10"
+        android:layout_below="@+id/v_bg"
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:textSize="@dimen/h10"
         android:textColor="@color/background_textmain"
         android:text="视频聊天"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:maxLines="1"
-        android:layout_centerVertical="true"
+
         android:maxLength="10"
         android:ellipsize="end"
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:layout_alignBottom="@+id/tv_title"
+        android:paddingTop="@dimen/d10"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/d10"
+        android:layout_below="@+id/v_bg"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/h7"
+        android:textSize="@dimen/h4"
         android:textColor="@color/background_textcontext"
         android:text="查看更多"
-        android:drawablePadding="@dimen/d5"
+        android:drawablePadding="@dimen/d2"
         android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:drawableRight="@mipmap/ic_localtyrant_back"
+        android:layout_centerHorizontal="true"
+        android:drawableRight="@mipmap/right_icon"
         android:maxLines="1"
         android:maxLength="10"
         android:ellipsize="end"
         android:layout_height="wrap_content"/>
+
 
 </RelativeLayout>

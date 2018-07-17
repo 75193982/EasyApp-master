@@ -25,7 +25,6 @@
     <RelativeLayout
         android:padding="@dimen/d8"
         android:layout_marginTop="@dimen/d5"
-        android:layout_marginBottom="@dimen/d5"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="wrap_content">
