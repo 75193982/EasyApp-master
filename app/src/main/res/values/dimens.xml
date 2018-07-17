@@ -25,6 +25,7 @@
     <dimen name="h10">18sp</dimen>
     <!--h11-->
     <dimen name="h11">19sp</dimen>
+    <dimen name="d2">2dp</dimen>
     <dimen name="d3">3dp</dimen>
     <dimen name="d5">5dp</dimen>
     <dimen name="d8">8dp</dimen>

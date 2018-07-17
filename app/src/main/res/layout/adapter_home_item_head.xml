@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/main_title_backgroud"
+    android:background="@color/whites"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingBottom="@dimen/d8"
+    android:paddingTop="@dimen/d8"
+    android:paddingRight="@dimen/d5"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_title"

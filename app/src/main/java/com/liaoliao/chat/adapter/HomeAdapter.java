@@ -1,6 +1,9 @@
 package com.liaoliao.chat.adapter;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,6 +14,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.liaoliao.R;
 import com.liaoliao.chat.model.HserSection;
 import com.liaoliao.chat.model.UserBao;
+import com.liaoliao.chat.model.UserBaoTitle;
+import com.liaoliao.chat.widget.MyRecyclerView;
 
 import java.util.List;
 
@@ -18,6 +23,8 @@ import java.util.List;
  * Created by lv on 2018/7/9 for EasyApp-master
  */
 public class HomeAdapter extends BaseSectionQuickAdapter<HserSection, BaseViewHolder> {
+    Context mContext;
+    private final RecyclerView.RecycledViewPool viewPool;
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -25,8 +32,10 @@ public class HomeAdapter extends BaseSectionQuickAdapter<HserSection, BaseViewHo
      *
      * @param data             A new list is created out of this one to avoid mutable list
      */
-    public HomeAdapter( List<HserSection> data) {
+    public HomeAdapter(Context context, List<HserSection> data) {
         super(R.layout.adapter_home_item, R.layout.adapter_home_item_head, data);
+        mContext = context;
+        viewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -36,13 +45,20 @@ public class HomeAdapter extends BaseSectionQuickAdapter<HserSection, BaseViewHo
 
     @Override
     protected void convert(BaseViewHolder helper, HserSection item) {
-        UserBao userBao  = item.t;
-        ImageView tv_headImg = helper.getView(R.id.tv_headImg);
-        Glide.with(mContext).load(userBao.headImg).error(R.drawable.drawable_face_beauty)
-                .into(tv_headImg);
-        helper.setText(R.id.tv_name,userBao.name) ;
-        helper.setText(R.id.tv_price,userBao.price) ;
-        helper.setText(R.id.tv_uint,userBao.uint) ;
+        UserBaoTitle userBaoTitle  = item.t;
+        RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+        if(recyclerView.getAdapter() == null){
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(new HomeItemAdapter(userBaoTitle.list));
+            recyclerView. setRecycledViewPool(viewPool);
+        }
+
+
+
+
+
 
     }
 }
