@@ -210,7 +210,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                     toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
-
+                    //if(toolbar.getVisibility() == View.VISIBLE ) toolbar.setVisibility(View.INVISIBLE);
                     return ;
 
                 }
@@ -225,6 +225,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                     toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
+                   // if(toolbar.getVisibility() == View.INVISIBLE) toolbar.setVisibility(View.VISIBLE);
                 } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                     float scale = (float) overallXScroll / height;
                     float alpha = (255 * scale);
@@ -237,6 +238,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     toolbar.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
+                   // toolbar.setVisibility(View.VISIBLE);
                 } else {
                     Log.d("FirstFragment","3-----------"+overallXScroll);
                     toolbar.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
@@ -247,7 +249,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
-
+                   // if(toolbar.getVisibility() == View.INVISIBLE) toolbar.setVisibility(View.VISIBLE);
                 }
             }
         });
