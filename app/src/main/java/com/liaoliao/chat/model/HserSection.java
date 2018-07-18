@@ -15,5 +15,5 @@ public class HserSection extends SectionEntity<UserBaoTitle> {
     public HserSection(UserBaoTitle userBaoTitle) {
         super(userBaoTitle);
     }
-
+    public int scrollOffset ,scrollPosition;
 }

@@ -200,7 +200,20 @@ public class FirstFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                boolean onTop = mRecyclerView.isOnTop();
+                if(onTop){
+                    int paddingBottom = searchView.getPaddingBottom();
+                    int paddingLeft = searchView.getPaddingLeft();
+                    int paddingRight = searchView.getPaddingRight();
+                    int paddingTop = searchView.getPaddingTop();
+                    searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_while_shape));
+                    searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+                    tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                    toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
 
+                    return ;
+
+                }
                 overallXScroll = overallXScroll + dy;// 累加y值 解决滑动一半y值为0
                 if (overallXScroll <= 0) {   //设置标题的背景颜色
                     Log.d("FirstFragment","1-----------"+overallXScroll);
@@ -227,7 +240,13 @@ public class FirstFragment extends BaseFragment {
                 } else {
                     Log.d("FirstFragment","3-----------"+overallXScroll);
                     toolbar.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
-
+                    int paddingBottom = searchView.getPaddingBottom();
+                    int paddingLeft = searchView.getPaddingLeft();
+                    int paddingRight = searchView.getPaddingRight();
+                    int paddingTop = searchView.getPaddingTop();
+                    searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
+                    searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+                    tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
 
                 }
             }

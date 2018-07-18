@@ -19,10 +19,11 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  * Created by lv on 2018/7/17 for EasyApp-master
  */
 public class HomeItemAdapter extends BaseQuickAdapter<UserBao, BaseViewHolder> {
+        private Context mContext;
 
-
-    public HomeItemAdapter(@Nullable List<UserBao> data) {
+    public HomeItemAdapter(Context context,@Nullable List<UserBao> data) {
         super(R.layout.adapter_home_item_child, data);
+         mContext = context ;
     }
 
     @Override

@@ -433,7 +433,7 @@ public class XRecyclerView extends RecyclerView {
         return max;
     }
 
-    private boolean isOnTop() {
+    public boolean isOnTop() {
         if(mRefreshHeader == null)
             return false;
         if (mRefreshHeader.getParent() != null) {
@@ -699,7 +699,7 @@ public class XRecyclerView extends RecyclerView {
     public interface LoadingListener {
 
         void onRefresh();
-
+        void onTouch(boolean b);
         void onLoadMore();
     }
 
