@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,8 @@ public class FirstFragment extends BaseFragment {
     TextView tvCityName;
     @BindView(R.id.searchView)
     TextView searchView;
+
+    boolean isTouch ;
 
     String[] urls = {
             "http://img0.imgtn.bdimg.com/it/u=2263418180,3668836868&fm=206&gp=0.jpg",
@@ -162,7 +165,32 @@ public class FirstFragment extends BaseFragment {
                 .start();
         mRecyclerView.addHeaderView(view);
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLoadingMoreEnabled(false);
+        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                overallXScroll = 0 ;
+                mRecyclerView.refreshComplete();
+            }
 
+            @Override
+            public void onTouch(boolean b) {
+                overallXScroll = 0 ;
+                int paddingBottom = searchView.getPaddingBottom();
+                int paddingLeft = searchView.getPaddingLeft();
+                int paddingRight = searchView.getPaddingRight();
+                int paddingTop = searchView.getPaddingTop();
+                searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_while_shape));
+                searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+                tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
+            }
+
+            @Override
+            public void onLoadMore() {
+                // load more data here
+            }
+        });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -172,8 +200,10 @@ public class FirstFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+
                 overallXScroll = overallXScroll + dy;// 累加y值 解决滑动一半y值为0
                 if (overallXScroll <= 0) {   //设置标题的背景颜色
+                    Log.d("FirstFragment","1-----------"+overallXScroll);
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
                     int paddingRight = searchView.getPaddingRight();
@@ -185,6 +215,7 @@ public class FirstFragment extends BaseFragment {
                 } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                     float scale = (float) overallXScroll / height;
                     float alpha = (255 * scale);
+                    Log.d("FirstFragment","2-----------"+overallXScroll);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
@@ -194,6 +225,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     toolbar.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
                 } else {
+                    Log.d("FirstFragment","3-----------"+overallXScroll);
                     toolbar.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
 
 
