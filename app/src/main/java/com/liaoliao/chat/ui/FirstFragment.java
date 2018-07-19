@@ -201,7 +201,9 @@ public class FirstFragment extends BaseFragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 boolean onTop = mRecyclerView.isOnTop();
-                if(onTop){
+                int height1 = mRecyclerView.getrefreshHeaderVisibleHeight();
+                if( onTop || height1 >0 ){
+                    overallXScroll = 0 ;
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
                     int paddingRight = searchView.getPaddingRight();
@@ -216,7 +218,7 @@ public class FirstFragment extends BaseFragment {
                 }
                 overallXScroll = overallXScroll + dy;// 累加y值 解决滑动一半y值为0
                 if (overallXScroll <= 0) {   //设置标题的背景颜色
-                    Log.d("FirstFragment","1-----------"+overallXScroll);
+                 //   Log.d("FirstFragment","1-----------"+overallXScroll);
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
                     int paddingRight = searchView.getPaddingRight();
@@ -229,7 +231,7 @@ public class FirstFragment extends BaseFragment {
                 } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                     float scale = (float) overallXScroll / height;
                     float alpha = (255 * scale);
-                    Log.d("FirstFragment","2-----------"+overallXScroll);
+                  //  Log.d("FirstFragment","2-----------"+overallXScroll);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
@@ -238,9 +240,10 @@ public class FirstFragment extends BaseFragment {
                     searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     toolbar.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
+                    Log.d("alpha","alpha---------alpha--"+alpha);
                    // toolbar.setVisibility(View.VISIBLE);
                 } else {
-                    Log.d("FirstFragment","3-----------"+overallXScroll);
+                  //  Log.d("FirstFragment","3-----------"+overallXScroll);
                     toolbar.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
@@ -250,6 +253,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
                    // if(toolbar.getVisibility() == View.INVISIBLE) toolbar.setVisibility(View.VISIBLE);
+
                 }
             }
         });
