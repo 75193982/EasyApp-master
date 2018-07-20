@@ -1,8 +1,11 @@
 package com.jcodecraeer.xrecyclerview;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -13,53 +16,29 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jcodecraeer.xrecyclerview.progressindicator.AVLoadingIndicatorView;
 
-import java.util.Date;
 
-public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeader {
-
-    private static final String XR_REFRESH_KEY = "XR_REFRESH_KEY";
-    private static final String XR_REFRESH_TIME_KEY = "XR_REFRESH_TIME_KEY";
+public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeader{
 	private LinearLayout mContainer;
 	private ImageView mArrowImageView;
-	private SimpleViewSwitcher mProgressBar;
-	private TextView mStatusTextView;
-	private int mState = STATE_NORMAL;
+	private ImageView mProgressBar;
 
-	private TextView mHeaderTimeView;
-	private LinearLayout mHeaderRefreshTimeContainer;
+	private int mState = STATE_NORMAL;
+    private Context mContext;
+	
 
 	private Animation mRotateUpAnim;
 	private Animation mRotateDownAnim;
 	
-	private static final int ROTATE_ANIM_DURATION = 180;
+	private final int ROTATE_ANIM_DURATION = 180;
 
 	public int mMeasuredHeight;
-    private AVLoadingIndicatorView progressView;
-
-	public void destroy(){
-        mProgressBar = null;
-        if(progressView != null){
-            progressView.destroy();
-            progressView = null;
-        }
-	    if(mRotateUpAnim != null){
-            mRotateUpAnim.cancel();
-            mRotateUpAnim = null;
-        }
-        if(mRotateDownAnim != null){
-            mRotateDownAnim.cancel();
-            mRotateDownAnim = null;
-        }
-    }
-
+	int reId[] = new int[]{R.drawable.icon_alpaca_01,R.drawable.icon_alpaca_02,R.drawable.icon_alpaca_03,R.drawable.icon_alpaca_04,R.drawable.icon_alpaca_05,R.drawable.icon_alpaca_06,R.drawable.icon_alpaca_07,R.drawable.icon_alpaca_08,R.drawable.icon_alpaca_09,R.drawable.icon_alpaca_10,R.drawable.icon_alpaca_11,R.drawable.icon_alpaca_12,R.drawable.icon_alpaca_13,R.drawable.icon_alpaca_14,R.drawable.icon_alpaca_15,R.drawable.icon_alpaca_16,R.drawable.icon_alpaca_17,R.drawable.icon_alpaca_18,R.drawable.icon_alpaca_19,R.drawable.icon_alpaca_20};
 	public ArrowRefreshHeader(Context context) {
 		super(context);
-		initView();
+		initView(context);
 	}
 
 	/**
@@ -68,22 +47,15 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 	 */
 	public ArrowRefreshHeader(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		initView();
+		initView(context);
 	}
 
-	public void setRefreshTimeVisible(boolean show){
-	    if(mHeaderRefreshTimeContainer != null)
-            mHeaderRefreshTimeContainer.setVisibility(show?VISIBLE:GONE);
-    }
+	private void initView(Context context) {
 
-	private void initView() {
+        mContext = context;
 		// 初始情况，设置下拉刷新view高度为0
-		mContainer = (LinearLayout) LayoutInflater.from(getContext()).inflate(
-				R.layout.listview_header, null);
-
-        mHeaderRefreshTimeContainer
-                = (LinearLayout) mContainer.findViewById(R.id.header_refresh_time_container);
-
+		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
+				R.layout.xrecyclerview_header, null);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 0, 0, 0);
 		this.setLayoutParams(lp);
@@ -93,40 +65,41 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 		setGravity(Gravity.BOTTOM);
 
 		mArrowImageView = (ImageView)findViewById(R.id.listview_header_arrow);
-		mStatusTextView = (TextView)findViewById(R.id.refresh_status_textview);
+
 
         //init the progress view
-		mProgressBar = (SimpleViewSwitcher)findViewById(R.id.listview_header_progressbar);
-        progressView = new  AVLoadingIndicatorView(getContext());
+		mProgressBar = (ImageView)findViewById(R.id.listview_header_progressbar);
+       /* AVLoadingIndicatorView progressView = new  AVLoadingIndicatorView(context);
         progressView.setIndicatorColor(0xffB5B5B5);
         progressView.setIndicatorId(ProgressStyle.BallSpinFadeLoader);
-        if(mProgressBar != null)
-            mProgressBar.setView(progressView);
+        mProgressBar.setView(progressView);*/
+
 
 		mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
-				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
 		mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
 		mRotateUpAnim.setFillAfter(true);
 		mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
 		mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
 		mRotateDownAnim.setFillAfter(true);
 		
-		mHeaderTimeView = (TextView)findViewById(R.id.last_refresh_time);
+
 		measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 		mMeasuredHeight = getMeasuredHeight();
 	}
 
     public void setProgressStyle(int style) {
-        if(style == ProgressStyle.SysProgress){
-            if(mProgressBar != null)
-                mProgressBar.setView(new ProgressBar(getContext(), null, android.R.attr.progressBarStyle));
+       /* if(style == ProgressStyle.SysProgress){
+            mProgressBar.setView(new ProgressBar(mContext, null, android.R.attr.progressBarStyle));
         }else{
-            progressView = new AVLoadingIndicatorView(this.getContext());
+            AVLoadingIndicatorView progressView = new  AVLoadingIndicatorView(this.getContext());
             progressView.setIndicatorColor(0xffB5B5B5);
             progressView.setIndicatorId(style);
             mProgressBar.setView(progressView);
-        }
+        }*/
     }
 
     public void setArrowImageView(int resid){
@@ -134,47 +107,48 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
     }
 
 	public void setState(int state) {
-		if (state == mState) return ;
+		if (state == mState) {
+            return ;
+        }
 
 		if (state == STATE_REFRESHING) {	// 显示进度
 			mArrowImageView.clearAnimation();
 			mArrowImageView.setVisibility(View.INVISIBLE);
-            if(mProgressBar != null)
-			    mProgressBar.setVisibility(View.VISIBLE);
-            smoothScrollTo(mMeasuredHeight);
+			mProgressBar.setVisibility(View.VISIBLE);
+			mProgressBar.setImageResource(R.drawable.frame_animation);
+		        // 获取iv的背景
+		        AnimationDrawable ad = (AnimationDrawable) mProgressBar.getDrawable();
+		        ad.start();
 		} else if(state == STATE_DONE) {
             mArrowImageView.setVisibility(View.INVISIBLE);
-            if(mProgressBar != null)
-                mProgressBar.setVisibility(View.INVISIBLE);
+           // mProgressBar.setVisibility(View.INVISIBLE);
         } else {	// 显示箭头图片
 			mArrowImageView.setVisibility(View.VISIBLE);
-			if(mProgressBar != null){
-                mProgressBar.setVisibility(View.INVISIBLE);
-            }
+			mProgressBar.setVisibility(View.INVISIBLE);
 		}
-        mHeaderTimeView.setText(friendlyTime(getLastRefreshTime()));
+		
 		switch(state){
             case STATE_NORMAL:
                 if (mState == STATE_RELEASE_TO_REFRESH) {
-                    mArrowImageView.startAnimation(mRotateDownAnim);
+                    //mArrowImageView.startAnimation(mRotateDownAnim);
                 }
                 if (mState == STATE_REFRESHING) {
                     mArrowImageView.clearAnimation();
                 }
-                mStatusTextView.setText(R.string.listview_header_hint_normal);
+
                 break;
             case STATE_RELEASE_TO_REFRESH:
                 if (mState != STATE_RELEASE_TO_REFRESH) {
-                    mArrowImageView.clearAnimation();
-                    mArrowImageView.startAnimation(mRotateUpAnim);
-                    mStatusTextView.setText(R.string.listview_header_hint_release);
+                	 mArrowImageView.clearAnimation();
+                	
+
                 }
                 break;
-            case STATE_REFRESHING:
-                mStatusTextView.setText(R.string.refreshing);
+            case     STATE_REFRESHING:
+
                 break;
-            case STATE_DONE:
-                mStatusTextView.setText(R.string.refresh_done);
+            case    STATE_DONE:
+
                 break;
             default:
 		}
@@ -186,48 +160,128 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         return mState;
     }
 
-    private long getLastRefreshTime(){
-        SharedPreferences s =
-                getContext()
-                    .getSharedPreferences(XR_REFRESH_KEY,Context.MODE_APPEND);
-        return s.getLong(XR_REFRESH_TIME_KEY,new Date().getTime());
-    }
-
-    private void saveLastRefreshTime(long refreshTime){
-        SharedPreferences s =
-                getContext()
-                    .getSharedPreferences(XR_REFRESH_KEY,Context.MODE_APPEND);
-        s.edit().putLong(XR_REFRESH_TIME_KEY,refreshTime).commit();
-    }
-
     @Override
-	public void refreshComplete(){
-        mHeaderTimeView.setText(friendlyTime(getLastRefreshTime()));
-        saveLastRefreshTime(System.currentTimeMillis());
+	public void  refreshComplete(){
+    	if(null == refreshDate){
+    		refreshDate = new Date();
+    	}
+    	
+
         setState(STATE_DONE);
         new Handler().postDelayed(new Runnable(){
+            @Override
             public void run() {
                 reset();
             }
-        }, 200);
+        }, 500);
 	}
 
-	public void setVisibleHeight(int height) {
-		if (height < 0) height = 0;
-		LayoutParams lp = (LayoutParams) mContainer .getLayoutParams();
+	public void setVisiableHeight(int height) {
+		if (height < 0) {
+            height = 0;
+        }
+		LayoutParams lp = (LayoutParams) mContainer
+				.getLayoutParams();
 		lp.height = height;
 		mContainer.setLayoutParams(lp);
 	}
 
-	public int getVisibleHeight() {
+	/*public int getVisiableHeight() {
+        int height = 0;
+        LayoutParams lp = (LayoutParams) mContainer
+                .getLayoutParams();
+        height = lp.height;
+		return height;
+	}*/
+    public int getVisibleHeight() {
         LayoutParams lp = (LayoutParams) mContainer.getLayoutParams();
-		return lp.height;
-	}
-
+        return lp.height;
+    }
     @Override
     public void onMove(float delta) {
         if(getVisibleHeight() > 0 || delta > 0) {
-            setVisibleHeight((int) delta + getVisibleHeight());
+            if(getVisibleHeight() >mMeasuredHeight/2.6){
+                setArrowImageView(reId[0]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/2.5){
+                setArrowImageView(reId[1]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/2.4){
+                setArrowImageView(reId[2]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/2.3){
+                setArrowImageView(reId[3]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/2.2){
+                setArrowImageView(reId[4]);
+                return;
+            }
+            if( getVisibleHeight()>mMeasuredHeight/2.1){
+                setArrowImageView(reId[5]);
+                return;
+            }
+        	if(getVisibleHeight() >mMeasuredHeight/2.0){
+        		setArrowImageView(reId[6]);
+                return;
+        	}
+        	if( getVisibleHeight() >mMeasuredHeight/1.9){
+        		setArrowImageView(reId[7]);
+                return;
+        	}
+        	if( getVisibleHeight() >mMeasuredHeight/1.8){
+        		setArrowImageView(reId[8]);
+                return;
+        	}
+        	if( getVisibleHeight() >mMeasuredHeight/1.7){
+        		setArrowImageView(reId[9]);
+                return;
+        	}
+            if(getVisibleHeight() >mMeasuredHeight/1.6){
+                setArrowImageView(reId[10]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.5){
+                setArrowImageView(reId[11]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.4){
+                setArrowImageView(reId[12]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.3){
+                setArrowImageView(reId[13]);
+                return;
+            }
+            if(getVisibleHeight() >mMeasuredHeight/1.2){
+                setArrowImageView(reId[14]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.1){
+                setArrowImageView(reId[15]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.15){
+                setArrowImageView(reId[16]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.13){
+                setArrowImageView(reId[17]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1.10){
+                setArrowImageView(reId[18]);
+                return;
+            }
+            if( getVisibleHeight() >mMeasuredHeight/1){
+                setArrowImageView(reId[19]);
+                return;
+            }
+
+            setVisiableHeight((int) delta + getVisibleHeight());
             if (mState <= STATE_RELEASE_TO_REFRESH) { // 未处于刷新状态，更新箭头
                 if (getVisibleHeight() > mMeasuredHeight) {
                     setState(STATE_RELEASE_TO_REFRESH);
@@ -253,25 +307,22 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         if (mState == STATE_REFRESHING && height <=  mMeasuredHeight) {
             //return;
         }
-        if (mState != STATE_REFRESHING) {
-            smoothScrollTo(0);
-        }
-
+        int destHeight = 0; // default: scroll back to dismiss header.
+        // is refreshing, just scroll back to show all the header.
         if (mState == STATE_REFRESHING) {
-            int destHeight = mMeasuredHeight;
-            smoothScrollTo(destHeight);
+            destHeight = mMeasuredHeight;
         }
+        smoothScrollTo(destHeight);
 
         return isOnRefresh;
     }
 
+
+
     public void reset() {
         smoothScrollTo(0);
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                setState(STATE_NORMAL);
-            }
-        }, 500);
+        setState(STATE_NORMAL);
+        setArrowImageView(reId[0]);
     }
 
     private void smoothScrollTo(int destHeight) {
@@ -281,20 +332,27 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
             @Override
             public void onAnimationUpdate(ValueAnimator animation)
             {
-                setVisibleHeight((int) animation.getAnimatedValue());
+                setVisiableHeight((Integer) animation.getAnimatedValue());
             }
         });
         animator.start();
     }
 
-
-    public static String friendlyTime(Date time) {
-        return friendlyTime(time.getTime());
-    }
-
-    public static String friendlyTime(long time) {
+    /**
+	 * 获得系统的最新时间
+	 * 
+	 * @return
+	 */
+	private String getLastUpdateTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm:ss");
+		return sdf.format(System.currentTimeMillis());
+	}
+    
+    private  Date refreshDate;
+    public  String friendlyTime(Date time) {
+    	refreshDate = time;
         //获取time距离当前的秒数
-        int ct = (int)((System.currentTimeMillis() - time)/1000);
+        int ct = (int)((System.currentTimeMillis() - time.getTime())/1000);
 
         if(ct == 0) {
             return "刚刚";
@@ -307,8 +365,9 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         if(ct >= 60 && ct < 3600) {
             return Math.max(ct / 60,1) + "分钟前";
         }
-        if(ct >= 3600 && ct < 86400)
+        if(ct >= 3600 && ct < 86400) {
             return ct / 3600 + "小时前";
+        }
         if(ct >= 86400 && ct < 2592000){ //86400 * 30
             int day = ct / 86400 ;
             return day + "天前";
@@ -317,6 +376,20 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
             return ct / 2592000 + "月前";
         }
         return ct / 31104000 + "年前";
+    }
+
+
+    public void destroy(){
+        mProgressBar = null;
+
+        if(mRotateUpAnim != null){
+            mRotateUpAnim.cancel();
+            mRotateUpAnim = null;
+        }
+        if(mRotateDownAnim != null){
+            mRotateDownAnim.cancel();
+            mRotateDownAnim = null;
+        }
     }
 
 }

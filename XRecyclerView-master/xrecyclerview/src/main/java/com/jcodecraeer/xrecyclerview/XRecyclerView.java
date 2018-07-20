@@ -405,6 +405,9 @@ public class XRecyclerView extends RecyclerView {
                         break;
                     mRefreshHeader.onMove(deltaY / DRAG_RATE);
                     if (mRefreshHeader.getVisibleHeight() > 0 && mRefreshHeader.getState() < ArrowRefreshHeader.STATE_REFRESHING) {
+                        if (mLoadingListener != null) {
+                            mLoadingListener.onTouch(true);
+                        }
                         return false;
                     }
                 }
@@ -442,6 +445,16 @@ public class XRecyclerView extends RecyclerView {
             return false;
         }
     }
+
+    public int getrefreshHeaderVisibleHeight(){
+        if(mRefreshHeader == null){
+            return 0;
+        }else{
+            return mRefreshHeader.getVisibleHeight();
+        }
+
+    }
+
 
     private class DataObserver extends RecyclerView.AdapterDataObserver {
         @Override
