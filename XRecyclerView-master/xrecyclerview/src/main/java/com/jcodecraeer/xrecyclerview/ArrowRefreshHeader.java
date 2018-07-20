@@ -173,7 +173,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
             public void run() {
                 reset();
             }
-        }, 500);
+        }, 1000);
 	}
 
 	public void setVisiableHeight(int height) {
@@ -202,83 +202,83 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         if(getVisibleHeight() > 0 || delta > 0) {
             if(getVisibleHeight() >mMeasuredHeight/2.6){
                 setArrowImageView(reId[0]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/2.5){
                 setArrowImageView(reId[1]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/2.4){
                 setArrowImageView(reId[2]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/2.3){
                 setArrowImageView(reId[3]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/2.2){
                 setArrowImageView(reId[4]);
-                return;
+
             }
             if( getVisibleHeight()>mMeasuredHeight/2.1){
                 setArrowImageView(reId[5]);
-                return;
+
             }
         	if(getVisibleHeight() >mMeasuredHeight/2.0){
         		setArrowImageView(reId[6]);
-                return;
+
         	}
         	if( getVisibleHeight() >mMeasuredHeight/1.9){
         		setArrowImageView(reId[7]);
-                return;
+
         	}
         	if( getVisibleHeight() >mMeasuredHeight/1.8){
         		setArrowImageView(reId[8]);
-                return;
+
         	}
         	if( getVisibleHeight() >mMeasuredHeight/1.7){
         		setArrowImageView(reId[9]);
-                return;
+
         	}
             if(getVisibleHeight() >mMeasuredHeight/1.6){
                 setArrowImageView(reId[10]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.5){
                 setArrowImageView(reId[11]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.4){
                 setArrowImageView(reId[12]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.3){
                 setArrowImageView(reId[13]);
-                return;
+
             }
             if(getVisibleHeight() >mMeasuredHeight/1.2){
                 setArrowImageView(reId[14]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.1){
                 setArrowImageView(reId[15]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.15){
                 setArrowImageView(reId[16]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.13){
                 setArrowImageView(reId[17]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1.10){
                 setArrowImageView(reId[18]);
-                return;
+
             }
             if( getVisibleHeight() >mMeasuredHeight/1){
                 setArrowImageView(reId[19]);
-                return;
+
             }
 
             setVisiableHeight((int) delta + getVisibleHeight());

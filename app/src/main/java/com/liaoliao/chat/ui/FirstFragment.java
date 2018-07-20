@@ -171,6 +171,7 @@ public class FirstFragment extends BaseFragment {
             public void onRefresh() {
                 overallXScroll = 0 ;
                 mRecyclerView.refreshComplete();
+                toolbar.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -184,6 +185,7 @@ public class FirstFragment extends BaseFragment {
                 searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                 tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                 toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
+                toolbar.setVisibility(View.INVISIBLE);
             }
 
             @Override
