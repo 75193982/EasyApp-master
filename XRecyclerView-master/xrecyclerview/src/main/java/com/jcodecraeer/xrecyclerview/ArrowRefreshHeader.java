@@ -33,12 +33,13 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 	private Animation mRotateDownAnim;
 	
 	private final int ROTATE_ANIM_DURATION = 180;
-
+    private XRecyclerView xRecyclerView ;
 	public int mMeasuredHeight;
 	int reId[] = new int[]{R.drawable.icon_alpaca_01,R.drawable.icon_alpaca_02,R.drawable.icon_alpaca_03,R.drawable.icon_alpaca_04,R.drawable.icon_alpaca_05,R.drawable.icon_alpaca_06,R.drawable.icon_alpaca_07,R.drawable.icon_alpaca_08,R.drawable.icon_alpaca_09,R.drawable.icon_alpaca_10,R.drawable.icon_alpaca_11,R.drawable.icon_alpaca_12,R.drawable.icon_alpaca_13,R.drawable.icon_alpaca_14,R.drawable.icon_alpaca_15,R.drawable.icon_alpaca_16,R.drawable.icon_alpaca_17,R.drawable.icon_alpaca_18,R.drawable.icon_alpaca_19,R.drawable.icon_alpaca_20};
-	public ArrowRefreshHeader(Context context) {
+	public ArrowRefreshHeader(Context context, XRecyclerView xRecyclerView) {
 		super(context);
 		initView(context);
+		this.xRecyclerView = xRecyclerView ;
 	}
 
 	/**
@@ -173,7 +174,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
             public void run() {
                 reset();
             }
-        }, 1000);
+        }, 500);
 	}
 
 	public void setVisiableHeight(int height) {
@@ -322,10 +323,14 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
     public void reset() {
         smoothScrollTo(0);
         setState(STATE_NORMAL);
-        setArrowImageView(reId[0]);
+
     }
 
     private void smoothScrollTo(int destHeight) {
+        if( destHeight == 0 ){
+            xRecyclerView.getLoadingListener().onTouch(false);
+            setArrowImageView(reId[0]);
+        }
         ValueAnimator animator = ValueAnimator.ofInt(getVisibleHeight(), destHeight);
         animator.setDuration(300).start();
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

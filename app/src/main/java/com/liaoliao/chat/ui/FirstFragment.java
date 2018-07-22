@@ -171,11 +171,12 @@ public class FirstFragment extends BaseFragment {
             public void onRefresh() {
                 overallXScroll = 0 ;
                 mRecyclerView.refreshComplete();
-                toolbar.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onTouch(boolean b) {
+
                 overallXScroll = 0 ;
                 int paddingBottom = searchView.getPaddingBottom();
                 int paddingLeft = searchView.getPaddingLeft();
@@ -185,7 +186,11 @@ public class FirstFragment extends BaseFragment {
                 searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                 tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                 toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
-                toolbar.setVisibility(View.INVISIBLE);
+                if(b){
+                    toolbar.setVisibility(View.INVISIBLE);
+                }else {
+                    toolbar.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -214,7 +219,8 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                     toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
-                    //if(toolbar.getVisibility() == View.VISIBLE ) toolbar.setVisibility(View.INVISIBLE);
+
+                    if(toolbar.getVisibility() == View.INVISIBLE ) toolbar.setVisibility(View.VISIBLE);
                     return ;
 
                 }
@@ -229,11 +235,10 @@ public class FirstFragment extends BaseFragment {
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
                     toolbar.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
-                   // if(toolbar.getVisibility() == View.INVISIBLE) toolbar.setVisibility(View.VISIBLE);
+                    if(toolbar.getVisibility() == View.INVISIBLE ) toolbar.setVisibility(View.VISIBLE);
                 } else if (overallXScroll > 0 && overallXScroll <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
                     float scale = (float) overallXScroll / height;
                     float alpha = (255 * scale);
-                  //  Log.d("FirstFragment","2-----------"+overallXScroll);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
                     int paddingBottom = searchView.getPaddingBottom();
                     int paddingLeft = searchView.getPaddingLeft();
@@ -242,8 +247,8 @@ public class FirstFragment extends BaseFragment {
                     searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     toolbar.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
-                    Log.d("alpha","alpha---------alpha--"+alpha);
-                   // toolbar.setVisibility(View.VISIBLE);
+
+                    if(toolbar.getVisibility() == View.INVISIBLE ) toolbar.setVisibility(View.VISIBLE);
                 } else {
                   //  Log.d("FirstFragment","3-----------"+overallXScroll);
                     toolbar.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
@@ -254,7 +259,7 @@ public class FirstFragment extends BaseFragment {
                     searchView.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.search_shape));
                     searchView.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
                     tvCityName.setTextColor(ContextCompat.getColor(getActivity(),R.color.black));
-                   // if(toolbar.getVisibility() == View.INVISIBLE) toolbar.setVisibility(View.VISIBLE);
+                    if(toolbar.getVisibility() == View.INVISIBLE ) toolbar.setVisibility(View.VISIBLE);
 
                 }
             }

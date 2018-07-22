@@ -70,7 +70,7 @@ public class XRecyclerView extends RecyclerView {
 
     private void init() {
         if (pullRefreshEnabled) {
-            mRefreshHeader = new ArrowRefreshHeader(getContext());
+            mRefreshHeader = new ArrowRefreshHeader(getContext(),this);
             mRefreshHeader.setProgressStyle(mRefreshProgressStyle);
         }
         LoadingMoreFooter footView = new LoadingMoreFooter(getContext());
@@ -708,7 +708,9 @@ public class XRecyclerView extends RecyclerView {
     public void setLoadingListener(LoadingListener listener) {
         mLoadingListener = listener;
     }
-
+    public LoadingListener getLoadingListener() {
+         return mLoadingListener ;
+    }
     public interface LoadingListener {
 
         void onRefresh();
